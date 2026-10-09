@@ -8,14 +8,16 @@ searchable 64-case catalogue. GitHub Pages publishes the root of `main`;
 
 ## Current benchmark snapshot
 
-The site is synchronized with the benchmark's **v1.3.0** release, commit
-`156afbc0004d34d846e31db96e9e2feb617693fc`, on 2026-10-09.
+The site is synchronized with the benchmark's **v1.4.0** release, commit
+`f5a7ee69615a7b8d36aee79cfe80b9b89ce2d263`, on 2026-10-09.
 Displayed versions are a snapshot of the benchmark's sole version declaration,
 `livat_bench/_version.py`; this site does not define a separate protocol, Schema,
 data or calibration version. CARLA 0.9.16 and Livat B3 v1.3.0 are external
 dependency requirements. Release and documentation links are pinned to the same tag.
 
-This snapshot adds natural user prompts and 20 exit tasks (three named exits with four cases each, plus eight any-exit cases). A vehicle footprint center entering the corresponding private region ends an exit task automatically. Exit distance/maneuver weights are 60/40; category weights are 45/15/15/25. Six cameras use a centered 2560x1440 front view and five 1920x1080 views. Inference wall-clock time is recorded without a termination budget.
+This snapshot adds a single human-observer `GET /scene` for 9 B3 cores, 13 access connectors and 1,325 bays with independent charging, accessible and compact flags. The harness project's WebUI may render it for humans; models, policies and execution clients must not access or consume it, including via input, memory, caches or tool returns. Semantic boundaries are not collision walls, facilities and occupancy do not imply task eligibility, and map connectors are not scored exit regions.
+
+`observer` serves the static scene without CARLA. `campaign-next --observer-port` starts a separate observer per attempt. `abandon` retains a zero-score valid attempt; it cannot earn an infrastructure retry. Operator-only `campaign-status` and `campaign-recover --note` inspect and register verified saved evidence under an OS lock, retaining attempts and an audit; unknown or corrupted interruptions cannot be forced into retries.
 
 The release retains device metadata, runtime state, request receipts and recovery,
 endpoint-only RGB snapshots, local navigation annotations, and separate observer /
@@ -24,7 +26,7 @@ lifetime; historical path and candidate capabilities expire after a new observat
 Final results remain readable for at most 120 seconds, with explicit acknowledgement
 after saving.
 
-162 unit tests and the 64-case / 128-reference offline validation passed for this release; 26 old parking episodes also passed scoring regression.
+183 unit tests and the 64-case / 128-reference offline validation passed for this release; 33 unchanged historical episodes also passed scoring regression. The formal wheel passed independent installation, immutable resource, standard-library client and static observer HTTP checks. No new CARLA fixture or image review was run; previous evidence retains its original build identity.
 The release retains a failed full-source audit: 35 frozen files in the independently maintained adjacent agentic_parking harness drifted. Live interface and private-route controller checks are not
 autonomous model results. This site publishes no model leaderboard or model scores.
 
@@ -43,7 +45,7 @@ The owner explicitly authorized publishing the complete local referee atlas,
 including full-map geometry, per-bay scores, answer sets and offline reference routes.
 `atlas.html` is copied byte-for-byte from the tagged benchmark's `task-atlas.html`;
 its checksum is in `atlas-sha256.txt`. The 64 cases and 1,325 bays bind to dataset
-`3d92c032fef595e11cd2e1a673a4bcf3599cf338af8e405797f2a65640888416`.
+`cbccb29f946c1bf35f1a1aaf3ae6a55408ca874ec846a89c1c9af8368e943915`.
 This snapshot includes 5,892 continuous navigation curves and no run overlays.
 Human review only: harnesses must not use the atlas as prior map, answer or route
 knowledge. Offline references are not autonomous model scores.

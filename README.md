@@ -3,28 +3,29 @@
 Live site: https://starlento.github.io/livat-benchmark-site/
 
 Static public introduction, installation instructions, HTTP interface overview and
-searchable 44-case catalogue. GitHub Pages publishes the root of `main`;
+searchable 64-case catalogue. GitHub Pages publishes the root of `main`;
 `.nojekyll` disables Jekyll.
 
 ## Current benchmark snapshot
 
-The site is synchronized with the benchmark's **v1.2.0** release, commit
-`b1daedad7a646f59fab05d910ac1315eb86c4e1a`, on 2026-10-09.
+The site is synchronized with the benchmark's **v1.3.0** release, commit
+`156afbc0004d34d846e31db96e9e2feb617693fc`, on 2026-10-09.
 Displayed versions are a snapshot of the benchmark's sole version declaration,
 `livat_bench/_version.py`; this site does not define a separate protocol, Schema,
 data or calibration version. CARLA 0.9.16 and Livat B3 v1.3.0 are external
 dependency requirements. Release and documentation links are pinned to the same tag.
 
-This snapshot covers device metadata, runtime state, request receipts and recovery,
+This snapshot adds natural user prompts and 20 exit tasks (three named exits with four cases each, plus eight any-exit cases). A vehicle footprint center entering the corresponding private region ends an exit task automatically. Exit distance/maneuver weights are 60/40; category weights are 45/15/15/25. Six cameras use a centered 2560x1440 front view and five 1920x1080 views. Inference wall-clock time is recorded without a termination budget.
+
+The release retains device metadata, runtime state, request receipts and recovery,
 endpoint-only RGB snapshots, local navigation annotations, and separate observer /
 replay APIs. Historical images remain readable during the episode's HTTP service
 lifetime; historical path and candidate capabilities expire after a new observation.
 Final results remain readable for at most 120 seconds, with explicit acknowledgement
 after saving.
 
-146 unit tests and the 44-case / 88-reference offline validation passed for this sync.
-The release retains a failed full-source audit: historical adjacent harness sources
-changed or disappeared. Live interface and private-route controller checks are not
+162 unit tests and the 64-case / 128-reference offline validation passed for this release; 26 old parking episodes also passed scoring regression.
+The release retains a failed full-source audit: 35 frozen files in the independently maintained adjacent agentic_parking harness drifted. Live interface and private-route controller checks are not
 autonomous model results. This site publishes no model leaderboard or model scores.
 
 ## Public case catalogue
@@ -41,8 +42,8 @@ https://starlento.github.io/livat-benchmark-site/atlas.html
 The owner explicitly authorized publishing the complete local referee atlas,
 including full-map geometry, per-bay scores, answer sets and offline reference routes.
 `atlas.html` is copied byte-for-byte from the tagged benchmark's `task-atlas.html`;
-its checksum is in `atlas-sha256.txt`. The 44 cases and 1,325 bays bind to dataset
-`10327ac420f8ce225cc5a76c039314a747bd4ec57480b0d86784fc78cf0807f9`.
+its checksum is in `atlas-sha256.txt`. The 64 cases and 1,325 bays bind to dataset
+`3d92c032fef595e11cd2e1a673a4bcf3599cf338af8e405797f2a65640888416`.
 This snapshot includes 5,892 continuous navigation curves and no run overlays.
 Human review only: harnesses must not use the atlas as prior map, answer or route
 knowledge. Offline references are not autonomous model scores.

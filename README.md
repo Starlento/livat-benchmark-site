@@ -2,8 +2,32 @@
 
 Live site: https://starlento.github.io/livat-benchmark-site/
 
-Static public introduction, installation instructions, HTTP v3 overview and searchable
-44-case catalogue. GitHub Pages publishes the root of `main`; `.nojekyll` disables Jekyll.
+Static public introduction, installation instructions, HTTP interface overview and
+searchable 44-case catalogue. GitHub Pages publishes the root of `main`;
+`.nojekyll` disables Jekyll.
+
+## Current benchmark snapshot
+
+The site is synchronized with the benchmark's **v1.2.0** release, commit
+`b1daedad7a646f59fab05d910ac1315eb86c4e1a`, on 2026-10-09.
+Displayed versions are a snapshot of the benchmark's sole version declaration,
+`livat_bench/_version.py`; this site does not define a separate protocol, Schema,
+data or calibration version. CARLA 0.9.16 and Livat B3 v1.3.0 are external
+dependency requirements. Release and documentation links are pinned to the same tag.
+
+This snapshot covers device metadata, runtime state, request receipts and recovery,
+endpoint-only RGB snapshots, local navigation annotations, and separate observer /
+replay APIs. Historical images remain readable during the episode's HTTP service
+lifetime; historical path and candidate capabilities expire after a new observation.
+Final results remain readable for at most 120 seconds, with explicit acknowledgement
+after saving.
+
+146 unit tests and the 44-case / 88-reference offline validation passed for this sync.
+The release retains a failed full-source audit: historical adjacent harness sources
+changed or disappeared. Live interface and private-route controller checks are not
+autonomous model results. This site publishes no model leaderboard or model scores.
+
+## Public case catalogue
 
 `public-cases.json` is exported by `scripts/export_public_cases.py` in the private
 benchmark repository using `livat_bench.boundary.public_case`. Its only fields are
@@ -14,19 +38,36 @@ this file here. No private repository credentials are used by the website.
 
 https://starlento.github.io/livat-benchmark-site/atlas.html
 
-The owner explicitly authorized publishing the complete local referee atlas, including
-full-map geometry, per-bay scores, answer sets and offline reference routes.
-`atlas.html` is copied byte-for-byte from the benchmark's `task-atlas.html`; its
-checksum is in `atlas-sha256.txt`. The 44 cases and 1,325 bays bind to dataset
-`e415445c070f813ef675d2dfa7d471ad18c0eda5f7c322dc339d62bddb38557d`.
-Human review only: harnesses must not use the atlas as prior map or answer knowledge.
-Offline references are not autonomous model results.
+The owner explicitly authorized publishing the complete local referee atlas,
+including full-map geometry, per-bay scores, answer sets and offline reference routes.
+`atlas.html` is copied byte-for-byte from the tagged benchmark's `task-atlas.html`;
+its checksum is in `atlas-sha256.txt`. The 44 cases and 1,325 bays bind to dataset
+`10327ac420f8ce225cc5a76c039314a747bd4ec57480b0d86784fc78cf0807f9`.
+This snapshot includes 5,892 continuous navigation curves and no run overlays.
+Human review only: harnesses must not use the atlas as prior map, answer or route
+knowledge. Offline references are not autonomous model scores.
 
-Updates: validate the benchmark, verify the atlas dataset hash, confirm no navigation
-run overlays, copy the approved atlas snapshot and refresh its SHA-256 checksum.
-Other private materials are not automatically published. Images, recordings, evidence
-and keys must not enter this repository. The benchmark and release
-assets remain private; links to them require access permission. Map distribution is
-not available from this site yet. No autonomous model results are published here.
+## Updating
+
+1. Use the intended benchmark release checkout. Read its package version from
+   `livat_bench/_version.py` and verify its release tag resolves to that commit.
+2. Run the benchmark unit suite and `Bench.ps1 validate`. Preserve any source-audit
+   limitations and the original scope of runtime / image / performance evidence.
+3. Re-export the catalogue using `scripts/export_public_cases.py` with
+   `--output <SITE_CHECKOUT>/public-cases.json` from the benchmark checkout.
+4. Check that `task-atlas.html` has the same package version and dataset SHA-256
+   as the release, and that `navigationRecordings` is empty. Copy the approved
+   atlas exactly, then refresh `atlas-sha256.txt` from its actual bytes.
+5. Synchronize the homepage, installation command, release / documentation links,
+   and this snapshot record. Review desktop and narrow layouts, task search and
+   atlas navigation before publishing to `main`.
+6. Verify the deployed homepage and atlas checksum. `.gitattributes` enforces LF
+   line endings so Windows checkouts preserve the published atlas bytes.
+
+This authorization covers the complete atlas snapshot, not automatic publication of
+other private materials. Images, recordings, evidence and keys must not enter this
+repository. The benchmark and release assets remain private; links to them require
+access permission. Map distribution and installation instructions are not available
+from this site yet.
 
 For a local preview, run `python -m http.server 8088 --bind 127.0.0.1` in this directory.

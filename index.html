@@ -1,10 +1,91 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Livat Task Benchmark — 面向 CARLA parking harness 的任务环境与评测器。安装、公开任务目录与 HTTP 协议。"><title>Livat · Task Benchmark</title><link rel="stylesheet" href="styles.css"><script src="app.js" defer></script></head>
-<body><header><a class="brand" href="#"><span class="mark">L.</span>Livat <small>TASK BENCHMARK</small></a><nav aria-label="主导航"><a href="atlas.html">完整交互图谱 ↗</a><a href="#tasks">任务目录</a><a href="#install">安装</a><a href="#protocol">接入协议</a><a href="https://github.com/Starlento/livat-benchmark-site">GitHub ↗</a></nav></header>
-<main><section class="hero"><div><p class="eyebrow">CARLA 0.9.16 / LIVAT B3 / V1.0.0</p><h1>找到合适车位。<br><span>完成任务交接。</span></h1><p class="intro">面向 parking harness 的任务环境与评测器。让系统从用户原话出发，理解视觉、规划行动、记忆场景，再交出自己的选择。</p><div class="buttons"><a class="primary" href="#tasks">浏览 44 个任务 <span>↗</span></a><a class="secondary" href="atlas.html">打开完整图谱 ↗</a></div><p class="hero-note">任务终点：选位并交接 · Python ≥ 3.10 · HTTP v3</p></div><aside class="flow-card"><div class="card-top"><span>THE TASK LOOP</span><span class="live-dot">接口流程</span></div><div class="flow-step"><b>01</b><div><strong>观察</strong><span>用户目标 · RGB · 局部匿名几何</span></div></div><div class="flow-step"><b>02</b><div><strong>决策与移动</strong><span>安全导航分支 · 自选行驶距离</span></div></div><div class="flow-step"><b>03</b><div><strong>识别与交接</strong><span>登记车位四角 · 停稳 · 最终提交</span></div></div><div class="card-bottom">视觉理解与决策由 harness 完成</div></aside></section>
-<div class="metrics"><div><b>44</b><span>冻结任务</span></div><div><b>3</b><span>任务类别</span></div><div><b>7</b><span>RGB 相机</span></div><div><b>40 × 40 m</b><span>当前感知窗口</span></div></div>
-<section id="tasks"><div class="section-head"><div><p class="eyebrow">01 / PUBLIC TASK CATALOGUE</p><h2>用户怎么说，任务就怎么开始。</h2></div><p>浏览评测接口公开的任务原话。<br>输入关键词，找到你关心的场景。</p></div><label class="search-label" for="search">搜索用户原话或题目 ID</label><div class="search-row"><input type="search" id="search" placeholder="试试「电梯」「充电」「宜家」" autocomplete="off"><span id="count" role="status" aria-live="polite">加载任务…</span></div><div id="case-list" class="cases" aria-label="公开任务目录"></div><noscript><p>启用 JavaScript 查看任务目录，或下载 <a href="public-cases.json">公开任务 JSON</a>。</p></noscript><p class="caption">公开目录由 benchmark 的 boundary.py 显式构造，仅包含 case_id 与 user_input。<a href="atlas.html">完整交互图谱 ↗</a> 另行公开地图、评分答案与参考路线，供人工审阅；harness 不得将其作为先验地图或答案知识。</p></section>
-<section id="install"><div class="section-head"><div><p class="eyebrow">02 / GET STARTED</p><h2>一个 wheel，两种平台。</h2></div><p>Linux / Windows 共用纯 Python 安装包。<br>CARLA SDK 须与服务端及 Python ABI 匹配。</p></div><div class="install-grid"><div class="install-steps"><article><span>01</span><div><h3>准备模拟环境</h3><p>安装 <a href="https://github.com/carla-simulator/carla/releases/tag/0.9.16">CARLA 0.9.16 ↗</a>，部署 Livat B3 v1.3.0 地图与匹配的 CARLA Python API。地图交付下载入口待提供。</p></div></article><article><span>02</span><div><h3>安装 benchmark</h3><p>从 <a href="https://github.com/Starlento/livat-task-benchmark/releases/tag/v1.0.0">v1.0.0 Release ↗</a> 下载 wheel。Release 位于私有仓库，需要相应访问权限。</p></div></article><article><span>03</span><div><h3>启动任务服务</h3><p>按地图交付说明启动专用 CARLA 实例，再启动评测器。每题服务提供 HTTP 地址与独立 token。</p></div></article></div><div class="code-card"><div class="code-title"><span>TERMINAL / PYTHON ≥ 3.10</span><button id="copy" type="button">复制</button></div><pre><code id="install-code">python -m pip install ./livat_task_benchmark-1.0.0-py3-none-any.whl
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Livat Task Benchmark — 面向 CARLA parking harness 的任务环境与评测器。安装、44 题公开目录、可靠动作回执、终点快照与完整交互图谱。">
+  <title>Livat · Task Benchmark</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<header>
+  <a class="brand" href="#"><span class="mark">L.</span>Livat <small>TASK BENCHMARK</small></a>
+  <nav aria-label="主导航">
+    <a href="atlas.html">完整交互图谱 ↗</a>
+    <a href="#tasks">任务目录</a>
+    <a href="#install">安装</a>
+    <a href="#protocol">接入协议</a>
+    <a href="https://github.com/Starlento/livat-benchmark-site">GitHub ↗</a>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">CARLA 0.9.16 / LIVAT B3 / PACKAGE v1.2.0</p>
+      <h1>找到合适车位。<br><span>完成任务交接。</span></h1>
+      <p class="intro">面向 parking harness 的任务环境与评测器。让系统从用户原话出发，理解视觉、规划行动、记忆场景，再交出自己的选择。</p>
+      <div class="buttons">
+        <a class="primary" href="#tasks">浏览 44 个任务 <span>↗</span></a>
+        <a class="secondary" href="atlas.html">打开完整图谱 ↗</a>
+      </div>
+      <p class="hero-note">任务终点：选位并交接，不含泊入 · Python ≥ 3.10 · 独立 HTTP 接入</p>
+    </div>
+    <aside class="flow-card">
+      <div class="card-top"><span>THE TASK LOOP</span><span class="live-dot">接口流程</span></div>
+      <div class="flow-step"><b>01</b><div><strong>观察</strong><span>用户目标 · 同帧 RGB · 局部匿名几何</span></div></div>
+      <div class="flow-step"><b>02</b><div><strong>决策与移动</strong><span>认证导航路径 · 分段移动 · 终点快照</span></div></div>
+      <div class="flow-step"><b>03</b><div><strong>识别与交接</strong><span>登记车位四角 · 停稳 · 保存提交结果</span></div></div>
+      <div class="card-bottom">视觉理解与决策由 harness 完成</div>
+    </aside>
+  </section>
+
+  <div class="metrics">
+    <div><b>44</b><span>冻结任务</span></div>
+    <div><b>3</b><span>任务类别</span></div>
+    <div><b>7</b><span>RGB 相机</span></div>
+    <div><b>40 × 40 m</b><span>当前感知窗口</span></div>
+  </div>
+
+  <section id="release">
+    <div class="section-head">
+      <div><p class="eyebrow">CURRENT RELEASE / v1.2.0</p><h2>可靠执行，明确每个观察点。</h2></div>
+      <p>44 题、选位交接与计分语义保持不变。<br>协议、Schema 和客户端随同一个 package 发布。</p>
+    </div>
+    <div class="release-grid">
+      <article><span class="feature-label">设备与状态</span><h3>先了解车辆，再开始行动。</h3><p><code>describe()</code> 提供七路相机、标定和车辆几何；<code>state()</code> 查询当前请求、仿真帧、停稳时间和预算。</p></article>
+      <article><span class="feature-label">动作与恢复</span><h3>每次动作，都有确定回执。</h3><p>SDK 返回 <code>ActionReceipt</code>。超时或断线后用原 <code>request_id</code> 查结果；相同请求重传不会重复执行。</p></article>
+      <article><span class="feature-label">采集与导航</span><h3>到达终点，再观察下一段。</h3><p>移动只在终点采集同帧图像。局部进入点、解析曲线段与前沿分支身份帮助组织下一步决策。</p></article>
+    </div>
+    <p class="caption">当前版本来自 benchmark 的唯一 package 声明。服务端、导出客户端与 Schema 须使用同一发布。<a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.2.0/docs/RELEASE_NOTES.md">发布说明 ↗</a>（需仓库访问权限）</p>
+  </section>
+
+  <section id="tasks">
+    <div class="section-head">
+      <div><p class="eyebrow">01 / PUBLIC TASK CATALOGUE</p><h2>用户怎么说，任务就怎么开始。</h2></div>
+      <p>电梯厅 27 题 · 特殊位 8 题 · 购物目标 9 题。<br>输入关键词，找到你关心的场景。</p>
+    </div>
+    <label class="search-label" for="search">搜索用户原话或题目 ID</label>
+    <div class="search-row"><input type="search" id="search" placeholder="试试「电梯」「充电」「宜家」" autocomplete="off"><span id="count" role="status" aria-live="polite">加载任务…</span></div>
+    <div id="case-list" class="cases" aria-label="公开任务目录"></div>
+    <noscript><p>启用 JavaScript 查看任务目录，或下载 <a href="public-cases.json">公开任务 JSON</a>。</p></noscript>
+    <p class="caption">公开目录由 benchmark 的 boundary.py 显式构造，仅包含 case_id 与 user_input。<a href="atlas.html">完整交互图谱 ↗</a> 经所有者授权公开地图、评分答案与 88 条离线参考路线，供人工审阅；harness 不得将其用作先验地图、答案或路线知识。</p>
+  </section>
+
+  <section id="install">
+    <div class="section-head">
+      <div><p class="eyebrow">02 / GET STARTED</p><h2>一个 wheel，两种平台。</h2></div>
+      <p>Linux / Windows 共用纯 Python 安装包。<br>CARLA SDK 须与服务端及 Python ABI 匹配。</p>
+    </div>
+    <div class="install-grid">
+      <div class="install-steps">
+        <article><span>01</span><div><h3>准备模拟环境</h3><p>安装 <a href="https://github.com/carla-simulator/carla/releases/tag/0.9.16">CARLA 0.9.16 ↗</a>，部署 Livat B3 v1.3.0 地图与匹配的 CARLA Python API。地图包下载与安装说明待提供。</p></div></article>
+        <article><span>02</span><div><h3>安装 benchmark</h3><p>从 <a href="https://github.com/Starlento/livat-task-benchmark/releases/tag/v1.2.0">v1.2.0 Release ↗</a> 下载 wheel。Release 位于私有仓库，需要相应访问权限。安装本包不会安装或替换 CARLA SDK。</p></div></article>
+        <article><span>03</span><div><h3>启动任务服务</h3><p>按地图交付说明启动专用 CARLA 实例，再启动评测器。每题独占同步时钟，并提供 HTTP 地址与独立 token。相机沿用地图默认曝光。</p></div></article>
+      </div>
+      <div class="code-card">
+        <div class="code-title"><span>TERMINAL / PYTHON ≥ 3.10</span><button id="copy" type="button">复制</button></div>
+        <pre><code id="install-code">python -m pip install ./livat_task_benchmark-1.2.0-py3-none-any.whl
 
 livat-bench list-cases
 livat-bench validate
@@ -13,7 +94,74 @@ livat-bench serve \
   --case-id &lt;case_id&gt; \
   --host 127.0.0.1 --port 2600 \
   --api-port 8765 \
-  --output-dir ./bench-output</code></pre><p>换行写法适用于 Bash。PowerShell 请合并为单行；将 &lt;case_id&gt; 替换为 list-cases 返回的题目 ID。</p></div></div></section>
-<section id="protocol"><div class="section-head"><div><p class="eyebrow">03 / HTTP PROTOCOL V3</p><h2>通过接口，让系统作出选择。</h2></div><p>harness 在自己的进程中运行。<br>所有请求携带本题 Bearer token。</p></div><div class="table-wrap"><table><thead><tr><th>请求</th><th>能力</th></tr></thead><tbody><tr><td>GET /observation</td><td>读取当前观测、局部匿名占用与当前安全导航路径</td></tr><tr><td>GET /images/…</td><td>读取观测提供的原始 RGB 图像地址</td></tr><tr><td>POST /move</td><td>沿当前 path_id 执行自选弧长 distance_m</td></tr><tr><td>POST /wait</td><td>等待 1–10 秒，返回新观测</td></tr><tr><td>POST /propose</td><td>以四个有序角点登记匿名车位候选</td></tr><tr><td>POST /costs</td><td>报告模型请求与 token 成本</td></tr><tr><td>POST /submit</td><td>提交最终选择，结束本题并返回评分</td></tr></tbody></table></div><div class="callouts"><article><h3>当前能力随观测刷新</h3><p>移动或等待后，旧路径、候选与图像地址失效。路径范围以内可自由选择距离，最小 0.2 米。</p></article><article><h3>最终提交结束本题</h3><p>需在候选车位入口附近停稳至少 1 秒。无效或错误选择也结束任务；结果不提供参考答案。</p></article></div></section>
-<section class="evaluation"><p class="eyebrow">EVALUATION / SCOPE</p><h2>评测的是完整系统。</h2><p>系统负责视觉理解、规划、记忆与选择；评测器负责环境、运动合同和计分。本站展示任务说明与接口，未发布模型成绩。离线参考回放、controller fixture 与正式自主评测分别记录。</p><a href="https://github.com/Starlento/livat-task-benchmark">授权用户访问 benchmark 仓库 ↗</a></section></main>
-<footer><span>Livat · Task Benchmark / 1.0.0</span><span>Public project site · <a href="public-cases.json">任务 JSON</a> · <a href="https://github.com/Starlento/livat-benchmark-site">站点源码 ↗</a></span></footer></body></html>
+  --output-dir ./bench-output</code></pre>
+        <p>换行写法适用于 Bash。PowerShell 请合并为单行；将 &lt;case_id&gt; 替换为 list-cases 返回的题目 ID。</p>
+      </div>
+    </div>
+    <p class="caption">harness 在独立进程中使用同包的 BenchClient；无需第二个客户端包。也可运行 <code>livat-bench export-client ./public-client</code> 导出仅依赖标准库的客户端、类型、Schema 和分段取图 / 断线恢复示例。</p>
+  </section>
+
+  <section id="protocol">
+    <div class="section-head">
+      <div><p class="eyebrow">03 / HTTP INTERFACE</p><h2>通过接口，让系统作出选择。</h2></div>
+      <p>harness 在自己的进程中运行。<br>所有请求携带本题 Bearer token。</p>
+    </div>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="HTTP 接口一览，可横向滚动">
+      <table>
+        <thead><tr><th scope="col">请求</th><th scope="col">能力</th></tr></thead>
+        <tbody>
+          <tr><td>GET /metadata</td><td>读取全部七路相机、内外参、车辆几何与运动约束</td></tr>
+          <tr><td>GET /state</td><td>查询当前生命周期、执行请求、sim_frame、action_seq 和预算</td></tr>
+          <tr><td>GET /observation</td><td>读取最新完整观测、局部匿名占用与当前认证导航路径</td></tr>
+          <tr><td>GET /snapshot?observation_id=…</td><td>一次下载固定观测、清单和对应同帧 PNG；省略 ID 取最新</td></tr>
+          <tr><td>GET /images/…</td><td>读取已发布的原始 RGB；历史图片在本题 HTTP 服务期内可读</td></tr>
+          <tr><td>GET /requests/&lt;request_id&gt;</td><td>查询动作回执，超时或断线后恢复同一个请求</td></tr>
+          <tr><td>GET /result</td><td>读取固定终态公开结果，重复读取不重新评分</td></tr>
+          <tr><td>POST /move</td><td>沿当前 path_id 执行自选弧长 distance_m，返回动作回执</td></tr>
+          <tr><td>POST /wait</td><td>原地等待 1–10 秒，回执引用完成后的观测</td></tr>
+          <tr><td>POST /cameras</td><td>选择相机子集或全部关闭；设备描述始终完整</td></tr>
+          <tr><td>POST /propose</td><td>以四个有序角点登记匿名车位候选，ID 位于回执结果中</td></tr>
+          <tr><td>POST /costs</td><td>报告累计模型请求与 token 成本</td></tr>
+          <tr><td>POST /submit</td><td>提交最终选择，结束本题；从回执的业务结果读取评分</td></tr>
+          <tr><td>POST /acknowledge</td><td>保存终态结果后显式确认，提前关闭 HTTP 服务</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callouts">
+      <article><h3>观察后，使用新的路径能力</h3><p>每次新观测发布后，旧路径与候选失效，历史图片和快照仍可读取。移动距离至少 0.2 米，且不超过当前路径上限；前进或倒车由路径方向决定。</p></article>
+      <article><h3>沿途观察，需要主动分段</h3><p>一次移动只生成终点观测，不提供沿途图像。每段完成后用 <code>snapshot(receipt.output_observation_id)</code> 获取观测和图片，再用新路径决策。预算中断时需核对实际距离与结果，避免把旧观测当作终点图。</p></article>
+      <article><h3>恢复执行，保留原请求身份</h3><p>move、wait、cameras、propose、costs、submit 均携带 <code>request_id</code>。超时后用 <code>receipt()</code> 或 <code>wait_for()</code> 查询；相同 ID 与内容不会重复执行，不同内容复用 ID 会冲突。</p></article>
+      <article><h3>局部导航，支持精确接续</h3><p>进入点、曲线段身份与弧长 station 帮助分段后核对剩余路线。前沿 branch ID 用于归组；下一步执行仍使用最新 <code>path_id</code>。道路可交接区间不表示车位匹配分。</p></article>
+      <article><h3>七路相机，按需采集</h3><p>Model 3 前风挡中央两路、B 柱两路、前翼子板两路与车尾一路，均为 1920 × 1080。中央两路间隔 12 cm、FOV 90°，其余 140°；1 Hz 为传感器采样时钟，不代表移动中的视频流。</p></article>
+      <article><h3>终态结果，保存后再确认</h3><p>交接须满足可见、入口通道和停稳至少 1 秒等条件。最终提交结束本题，错误选择也会结束。CARLA actor 立即释放；回执、结果和历史图片最多保留 120 秒，保存后调用 <code>acknowledge()</code>。</p></article>
+    </div>
+    <p class="caption">完整字段与约束见 <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.2.0/client/PROTOCOL.md">公共协议 ↗</a> 和 <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.2.0/docs/CLIENT_GUIDE.md">客户端指南 ↗</a>（需仓库访问权限）。业务动作计数 action_seq 与实际仿真帧 sim_frame 分开；回执 completed 不等于任务成功。</p>
+  </section>
+
+  <section id="observer">
+    <div class="section-head">
+      <div><p class="eyebrow">04 / OBSERVER &amp; REPLAY</p><h2>独立观察，保留真实运行记录。</h2></div>
+      <p>观察通道默认关闭，只读且使用独立凭证。<br>本次交付提供 API，未附观察页面。</p>
+    </div>
+    <div class="callouts">
+      <article><h3>实时观察</h3><p>启动任务时增加 <code>--observer-port 8766</code>，启用独立进程和本机端口。提供场景、状态、事件、公开导航、实际采集快照及终态公开结果；不提供答案、逐车位分数或参考路线。</p></article>
+      <article><h3>离线回放</h3><p>使用 <code>livat-bench replay &lt;run_folder&gt;/public --api-port 8766</code> 读取保存的记录。回放不连接 CARLA、不重新评分；未完成的运行保持未完成状态。</p></article>
+    </div>
+    <p class="caption">观察通道供人工使用，不能成为 harness 的额外输入；凭证与 harness token 不通用。记录、图片及 token 留在评测端。<a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.2.0/docs/OBSERVER.md">观察与回放说明 ↗</a>（需仓库访问权限）</p>
+  </section>
+
+  <section class="evaluation">
+    <p class="eyebrow">EVALUATION / SCOPE</p>
+    <h2>评测的是完整系统。</h2>
+    <p>系统负责视觉理解、规划、记忆与选择；评测器负责环境、运动合同和计分。本站未发布模型成绩。离线参考回放、使用私有路线的 controller fixture 与模型正式评测分别记录。</p>
+    <p>v1.2.0 的 146 项单元测试、44 题 / 88 条参考验证通过；在线接口、相机与控制器验收属于运行验证，不是模型自主任务成绩。</p>
+    <p><strong>完整来源审计未通过。</strong>冻结记录中的相邻 harness 来源文件已变化或移除，交付保留这一溯源限制。普通验证通过不能替代完整来源审计；历史性能与图像证据保留各自原构建身份。</p>
+    <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.2.0/docs/RUNTIME_VALIDATION.md">运行验证报告（需访问权限）↗</a>
+  </section>
+</main>
+<footer>
+  <span>Livat · Task Benchmark / package 1.2.0 · 同步于 2026-10-09</span>
+  <span>Public project site · <a href="public-cases.json">任务 JSON</a> · <a href="atlas-sha256.txt">图谱 SHA-256</a> · <a href="https://github.com/Starlento/livat-benchmark-site">站点源码 ↗</a></span>
+</footer>
+</body>
+</html>

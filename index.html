@@ -22,7 +22,7 @@
 <main>
   <section class="hero">
     <div>
-      <p class="eyebrow">CARLA 0.9.16 / LIVAT B3 / PACKAGE v1.4.0</p>
+      <p class="eyebrow">CARLA 0.9.16 / LIVAT B3 / PACKAGE v1.5.0</p>
       <h1>找车位，也找出口。<br><span>从用户原话开始。</span></h1>
       <p class="intro">面向 parking harness 的任务环境与评测器。让系统从用户原话出发，理解视觉、规划行动、记忆场景，找到合适车位，或驶达用户想去的出口。</p>
       <div class="buttons">
@@ -49,15 +49,15 @@
 
   <section id="release">
     <div class="section-head">
-      <div><p class="eyebrow">CURRENT RELEASE / v1.4.0</p><h2>结构化地图，明确展示与决策边界。</h2></div>
-      <p>人类 WebUI 可读地图，模型与执行端禁止使用。<br>补齐主动放弃、观察服务和 campaign 受控恢复。</p>
+      <div><p class="eyebrow">CURRENT RELEASE / v1.5.0</p><h2>局部车位，公开观测与推断依据。</h2></div>
+      <p>匿名车位几何可供模型使用，语义仍由 RGB 判断。<br>全局地图继续只供人类展示。</p>
     </div>
     <div class="release-grid">
-      <article><span class="feature-label">统一地图</span><h3>一个接口，独立观察。</h3><p>观察端 GET /scene 提供 9 个 B3 核心区、13 个出入口与车位设施标记。静态观察无需 CARLA；仅供人类 WebUI 展示。</p></article>
-      <article><span class="feature-label">主动放弃</span><h3>结束当前题，保留有效尝试。</h3><p>abandon 保留实际消耗并记零分，沿用请求幂等、终态回执与显式确认。放弃不能作为基础设施错误获得免费重试。</p></article>
-      <article><span class="feature-label">Campaign 恢复</span><h3>依据落盘证据，保留审计。</h3><p>status 只读查询；recover 仅登记完整结果或已记录的基础设施错误。未知、冲突或损坏的中断证据不能强制恢复。</p></article>
+      <article><span class="feature-label">局部车位</span><h3>40 × 40 米，任意部分可见。</h3><p>GET /local-slots 提供四角、宽深、单观测匿名 ID、完整／部分可见和推断边界。占用区分空闲、占用与未知；未观察不能判空闲。不给车位号或充电／无障碍语义。</p></article>
+      <article><span class="feature-label">认证限制</span><h3>说明当前路径为什么停止。</h3><p>窗口、已知阻挡、观测不足和保守认证限制来自当前快照。只说明认证边界，不公开截断后的道路与分支；覆盖比例不是 RGB 置信概率。</p></article>
+      <article><span class="feature-label">直接交接</span><h3>提交几何，或实际车位号。</h3><p>两种提交二选一；后轴到车位多边形最近点不超过 10 米，或处于同一实际连接道路。总尺寸余量可本地检查；无法证明同路时保持未知。</p></article>
     </div>
-    <p class="caption">当前版本来自 benchmark 的唯一 package 声明。服务端、导出客户端与 Schema 须使用同一发布。<a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.4.0/docs/RELEASE_NOTES.md">发布说明 ↗</a>（需仓库访问权限）</p>
+    <p class="caption">当前版本来自 benchmark 的唯一 package 声明。服务端、导出客户端与 Schema 须使用同一发布。<a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.5.0/docs/RELEASE_NOTES.md">发布说明 ↗</a>（需仓库访问权限）</p>
   </section>
 
   <section id="tasks">
@@ -80,12 +80,12 @@
     <div class="install-grid">
       <div class="install-steps">
         <article><span>01</span><div><h3>准备模拟环境</h3><p>安装 <a href="https://github.com/carla-simulator/carla/releases/tag/0.9.16">CARLA 0.9.16 ↗</a>，部署 Livat B3 v1.3.0 地图与匹配的 CARLA Python API。地图包下载与安装说明待提供。</p></div></article>
-        <article><span>02</span><div><h3>安装 benchmark</h3><p>从 <a href="https://github.com/Starlento/livat-task-benchmark/releases/tag/v1.4.0">v1.4.0 Release ↗</a> 下载 wheel。Release 位于私有仓库，需要相应访问权限。安装本包不会安装或替换 CARLA SDK。</p></div></article>
+        <article><span>02</span><div><h3>安装 benchmark</h3><p>从 <a href="https://github.com/Starlento/livat-task-benchmark/releases/tag/v1.5.0">v1.5.0 Release ↗</a> 下载 wheel。Release 位于私有仓库，需要相应访问权限。安装本包不会安装或替换 CARLA SDK。</p></div></article>
         <article><span>03</span><div><h3>启动任务服务</h3><p>按地图交付说明启动专用 CARLA 实例，再启动评测器。每题独占同步时钟，并提供 HTTP 地址与独立 token。相机沿用地图默认曝光。</p></div></article>
       </div>
       <div class="code-card">
         <div class="code-title"><span>TERMINAL / PYTHON ≥ 3.10</span><button id="copy" type="button">复制</button></div>
-        <pre><code id="install-code">python -m pip install ./livat_task_benchmark-1.4.0-py3-none-any.whl
+        <pre><code id="install-code">python -m pip install ./livat_task_benchmark-1.5.0-py3-none-any.whl
 
 livat-bench list-cases
 livat-bench validate
@@ -112,7 +112,8 @@ livat-bench serve \
         <tbody>
           <tr><td>GET /metadata</td><td>读取全部六路相机、内外参、车辆几何与运动约束</td></tr>
           <tr><td>GET /state</td><td>查询当前生命周期、执行请求、sim_frame、action_seq 和预算</td></tr>
-          <tr><td>GET /observation</td><td>读取最新完整观测、局部匿名占用与当前认证导航路径</td></tr>
+          <tr><td>GET /observation</td><td>读取同帧 RGB 引用、局部占用、车位几何、几何规则与认证路径</td></tr>
+          <tr><td>GET /local-slots</td><td>读取当前或历史观测的匿名车位几何与占用证据；只读，不推进仿真</td></tr>
           <tr><td>GET /snapshot?observation_id=…</td><td>一次下载固定观测、清单和对应同帧 PNG；省略 ID 取最新</td></tr>
           <tr><td>GET /images/…</td><td>读取已发布的原始 RGB；历史图片在本题 HTTP 服务期内可读</td></tr>
           <tr><td>GET /requests/&lt;request_id&gt;</td><td>查询动作回执，超时或断线后恢复同一个请求</td></tr>
@@ -120,23 +121,22 @@ livat-bench serve \
           <tr><td>POST /move</td><td>沿当前 path_id 执行自选弧长 distance_m，返回动作回执</td></tr>
           <tr><td>POST /wait</td><td>原地等待 1–10 秒，回执引用完成后的观测</td></tr>
           <tr><td>POST /cameras</td><td>选择相机子集或全部关闭；设备描述始终完整</td></tr>
-          <tr><td>POST /propose</td><td>以四个有序角点登记匿名车位候选，ID 位于回执结果中</td></tr>
           <tr><td>POST /costs</td><td>报告累计模型请求与 token 成本</td></tr>
-          <tr><td>POST /submit</td><td>停车题提交最终选择并结束；出口题到达对应区域后自动结束</td></tr>
+          <tr><td>POST /submit</td><td>停车题以当前车体坐标四角或实际车位号提交；出口题到达区域后自动结束</td></tr>
           <tr><td>POST /abandon</td><td>主动结束当前题，记零分有效尝试；不是基础设施错误，不获得免费重试</td></tr>
           <tr><td>POST /acknowledge</td><td>保存终态结果后显式确认，提前关闭 HTTP 服务</td></tr>
         </tbody>
       </table>
     </div>
     <div class="callouts">
-      <article><h3>观察后，使用新的路径能力</h3><p>每次新观测发布后，旧路径与候选失效，历史图片和快照仍可读取。移动距离至少 0.2 米，且不超过当前路径上限；前进或倒车由路径方向决定。</p></article>
+      <article><h3>观察后，使用新的路径能力</h3><p>每次新观测生成新的路径能力和单观测车位 ID；历史快照仍可读取。几何提交引用当前观测的车体坐标。移动距离至少 0.2 米，且不超过当前路径上限；前进或倒车由路径方向决定。</p></article>
       <article><h3>沿途观察，需要主动分段</h3><p>一次移动只生成终点观测，不提供沿途图像。每段完成后用 <code>snapshot(receipt.output_observation_id)</code> 获取观测和图片，再用新路径决策。预算中断或出口自动完成时需核对实际距离与结果，避免把旧观测当作终点图。</p></article>
-      <article><h3>恢复执行，保留原请求身份</h3><p>move、wait、cameras、propose、costs、submit、abandon 均携带 <code>request_id</code>。超时后用 <code>receipt()</code> 或 <code>wait_for()</code> 查询；相同 ID 与内容不会重复执行，不同内容复用 ID 会冲突。</p></article>
-      <article><h3>局部导航，支持精确接续</h3><p>进入点、曲线段身份与弧长 station 帮助分段后核对剩余路线。前沿 branch ID 用于归组；下一步执行仍使用最新 <code>path_id</code>。道路可交接区间不表示车位匹配分。</p></article>
+      <article><h3>恢复执行，保留原请求身份</h3><p>move、wait、cameras、costs、submit、abandon 均携带 <code>request_id</code>。超时后用 <code>receipt()</code> 或 <code>wait_for()</code> 查询；相同 ID 与内容不会重复执行，不同内容复用 ID 会冲突。</p></article>
+      <article><h3>局部导航，支持精确接续</h3><p>进入点、曲线段身份与弧长 station 帮助分段后核对剩余路线。前沿 branch ID 用于归组；下一步执行仍使用最新 <code>path_id</code>。termination_reasons 说明当前认证限制，不提供隐藏道路；道路区间不表示车位匹配分或额外交接限制。</p></article>
       <article><h3>六路相机，按需采集</h3><p>Model 3 前风挡正中央一路 2560 × 1440、FOV 90°；B 柱两路、前翼子板两路及车尾一路均为 1920 × 1080、FOV 140°。1 Hz 为传感器采样时钟，不代表移动中的视频流。</p></article>
-      <article><h3>两种终点，保存结果后确认</h3><p>停车题须满足可见、入口通道和停稳至少 1 秒等交接条件。出口题到达区域即结束，无需选位或停稳；读取 <code>result()</code> 保存终态评分。回执、结果和历史图片最多保留 120 秒，保存后调用 <code>acknowledge()</code>。</p></article>
+      <article><h3>两种终点，保存结果后确认</h3><p>停车题提交当前车体坐标几何或实际号码；满足 10 米内或同一道路任一空间条件，无需当前可见或停稳 1 秒。尺寸、占用、目标匹配与安全检查继续生效。出口题到达区域即结束，无需选位或停稳；读取 <code>result()</code> 保存终态评分。回执、结果和历史图片最多保留 120 秒，保存后调用 <code>acknowledge()</code>。</p></article>
     </div>
-    <p class="caption">完整字段与约束见 <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.4.0/client/PROTOCOL.md">公共协议 ↗</a> 和 <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.4.0/docs/CLIENT_GUIDE.md">客户端指南 ↗</a>（需仓库访问权限）。业务动作计数 action_seq 与实际仿真帧 sim_frame 分开；回执 completed 不等于任务成功。</p>
+    <p class="caption">完整字段与约束见 <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.5.0/client/PROTOCOL.md">公共协议 ↗</a> 和 <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.5.0/docs/CLIENT_GUIDE.md">客户端指南 ↗</a>（需仓库访问权限）。业务动作计数 action_seq 与实际仿真帧 sim_frame 分开；回执 completed 不等于任务成功。</p>
   </section>
 
   <section id="observer">
@@ -149,7 +149,7 @@ livat-bench serve \
       <article><h3>无模拟器的静态地图</h3><p><code>livat-bench observer --api-port 8767</code> 只提供统一的 <code>GET /scene</code>，无需 CARLA 或任务记录。建筑多边形保留部件与孔洞，充电／无障碍／微型标记独立，可重叠。</p></article>
       <article><h3>离线回放</h3><p>使用 <code>livat-bench replay &lt;run_folder&gt;/public --api-port 8766</code> 读取保存的记录。回放不连接 CARLA、不重新评分；未完成的运行保持未完成状态。</p></article>
     </div>
-    <p class="caption">harness 项目的 WebUI 可用地图向人类展示；模型、策略和执行客户端禁止调用或使用，禁止回流到输入、记忆、缓存或工具结果。展示通道的端口与凭证独立。建筑语义边界不是物理墙，设施／固定占用不是任务准入，地图出入口不是成功区域或可通行性证明。记录、图片及 token 留在评测端。<a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.4.0/docs/OBSERVER.md">观察与回放说明 ↗</a>（需仓库访问权限）</p>
+    <p class="caption">harness 项目的 WebUI 可用地图向人类展示；模型、策略和执行客户端禁止调用或使用，禁止回流到输入、记忆、缓存或工具结果。展示通道的端口与凭证独立。建筑语义边界不是物理墙，设施／固定占用不是任务准入，地图出入口不是成功区域或可通行性证明。记录、图片及 token 留在评测端。<a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.5.0/docs/OBSERVER.md">观察与回放说明 ↗</a>（需仓库访问权限）</p>
   </section>
 
   <section class="evaluation">
@@ -157,13 +157,13 @@ livat-bench serve \
     <h2>评测的是完整系统。</h2>
     <p>系统负责视觉理解、规划、记忆与选择；评测器负责环境、运动合同和计分。本站未发布模型成绩。离线参考回放、使用私有路线的 controller fixture 与模型正式评测分别记录。</p>
     <p>停车题按车位匹配、距离、转向计分；出口题只计距离 60% 与转向 40%，不计车位匹配分。四类汇总权重依次为电梯厅 45%、特殊位 15%、购物目标 15%、出口智行 25%。</p>
-    <p>v1.4.0 的 183 项单元测试、64 题 / 128 条参考验证及 33 条历史轨迹计分回归通过。正式安装包另验独立安装、标准库客户端与静态观察接口；本次未重拍图像或重跑 CARLA，历史在线证据保留原始构建身份。上述验证不代表模型自主任务成功。</p>
+    <p>v1.5.0 的 196 项测试、64 题 / 128 条参考验证、两种提交的真实 HTTP、实车缓存与原路径对照及运动烟测通过。正式安装包另验独立安装、只读资源、标准库客户端和静态观察接口。新 RGB 未作视觉审查，原阶段证据保留构建身份；这些验证不代表模型自主任务成功。</p>
     <p><strong>完整来源审计未通过。</strong>冻结记录中独立外部 agentic_parking 的 35 个来源文件发生漂移，交付保留这一溯源限制。普通验证通过不能替代完整来源审计；历史性能与图像证据保留各自原构建身份。</p>
-    <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.4.0/docs/RUNTIME_VALIDATION.md">运行验证报告（需访问权限）↗</a>
+    <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.5.0/docs/RUNTIME_VALIDATION.md">运行验证报告（需访问权限）↗</a>
   </section>
 </main>
 <footer>
-  <span>Livat · Task Benchmark / package 1.4.0 · 同步于 2026-10-09</span>
+  <span>Livat · Task Benchmark / package 1.5.0 · 同步于 2026-10-10</span>
   <span>Public project site · <a href="public-cases.json">任务 JSON</a> · <a href="atlas-sha256.txt">图谱 SHA-256</a> · <a href="https://github.com/Starlento/livat-benchmark-site">站点源码 ↗</a></span>
 </footer>
 </body>

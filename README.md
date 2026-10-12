@@ -8,16 +8,18 @@ searchable 64-case catalogue. GitHub Pages publishes the root of `main`;
 
 ## Current benchmark snapshot
 
-The site is synchronized with the benchmark's **v1.5.0** release, commit
-`c830b80b2e00399070526d04f61e1a8b76a91c55`, on 2026-10-10.
+The site is synchronized with the benchmark's **v1.7.1** release, commit
+`ce584c784d6b9583b714ebd89b735d7772b2ea36`, on 2026-10-12.
 Displayed versions are a snapshot of the benchmark's sole version declaration,
 `livat_bench/_version.py`; this site does not define a separate protocol, Schema,
 data or calibration version. CARLA 0.9.16 and Livat B3 v1.3.0 are external
 dependency requirements. Release and documentation links are pinned to the same tag.
 
-This snapshot adds model-usable `GET /local-slots`: current 40x40m bay corners and dimensions, single-observation anonymous IDs, complete/partial geometric visibility and inferred boundaries, and free/occupied/unknown evidence from the current public grid. Any remaining visible area admits inferred full corners. Unobserved occupancy is not free; coverage is not RGB confidence. No printed bay number, global/tracking identity or charging/accessible semantics are exposed.
+This snapshot fixes destination match distance to the bay polygon centroid's shortest Euclidean distance to the target building polygon area, ignoring intervening obstacles. Building components and holes are preserved. The 20/40/60/80m Q bands and eligibility/facility rules remain. This geometric line does not certify a walking or driving path.
 
-Path limits explain only the current certificate boundary, without hidden road suffixes or branch counts. The standard-library checker uses total dimension margins and rear-axle-to-polygon distance; same-road membership stays unknown without private binding. Parking directly submits current-frame corners or a printed bay number, with the spatial rule 10m OR the connected physical road.
+Parking driving and maneuver baselines use the same shortest route from the task start to a currently submittable Q=1 bay. Each efficiency is capped at full credit. The current set has 44 parking references and 40 exit references; 28 parking routes changed and 6 parking cases have zero-distance baselines. Cases, requests and starts are unchanged.
+
+`GET /local-slots` exposes model-usable anonymous bay geometry in the rear-axle-relative 60x40m window: 40m forward, 20m rear, 20m to either side. Free/occupied/unknown support remains observation-grounded; no printed bay number, global/tracking identity, charging/accessible semantics or task suitability is exposed. Parking accepts only current `local_slots` `polygon_local_m` geometry. Eligibility, real occupancy/dimensions, unique correspondence, fresh observation, motion and budgets still apply. Path limits are reported as `termination_reasons`; `GET /observation?view=decision` provides the lighter decision view.
 
 Global `GET /scene` remains exclusively for human observer WebUI rendering. Models, policies and execution clients must not access or consume global map semantics through input, memory, caches or tools. Building semantic boundaries are not walls, facilities and occupancy do not establish eligibility, and map connectors are not scored exits.
 
@@ -30,7 +32,7 @@ lifetime; historical path capabilities expire after a new observation; old local
 Final results remain readable for at most 120 seconds, with explicit acknowledgement
 after saving.
 
-196 tests and the 64-case / 128-reference validation passed, alongside separate-process HTTP for both submission forms, live cache/baseline-path comparisons and a CARLA controller fixture. The formal wheel passed independent installation, immutable-resource, standard-library client and static observer HTTP checks. New RGB was not visually reviewed. Original spatial-handoff historical audits retain their original build identities. These are not autonomous/model scores.
+232 tests and the 64-case / 84-reference validation passed. 1,531 positive distance annotations were independently recomputed; all 44 current parking references score 100 in offline replay, with 44 prior references and 3 saved runs also replayed for comparison. The formal wheel passed independent installation, immutable-resource, standard-library client and execution/observer HTTP checks. No new CARLA run or physical RGB capture/review took place. Historical records keep their original build identities and scores. These checks are not autonomous/model scores. Start new campaigns with the matching package/client/schema; do not resume old experiments across scoring builds.
 The release retains a failed full-source audit: 35 frozen files in the independently maintained adjacent agentic_parking harness drifted. Live interface and private-route controller checks are not
 autonomous model results. This site publishes no model leaderboard or model scores.
 
@@ -49,7 +51,7 @@ The owner explicitly authorized publishing the complete local referee atlas,
 including full-map geometry, per-bay scores, answer sets and offline reference routes.
 `atlas.html` is copied byte-for-byte from the tagged benchmark's `task-atlas.html`;
 its checksum is in `atlas-sha256.txt`. The 64 cases and 1,325 bays bind to dataset
-`0cada9c81a66b816ae0ff18da142b4d28a12493c6fa189fdc88947239fb6345e`.
+`5fb00d9b78016196fc13ce7998c26475926b143ea7705374e4dad9939277f9ad`.
 This snapshot includes 5,892 continuous navigation curves and no run overlays.
 Human review only: harnesses must not use the atlas as prior map, answer or route
 knowledge. Offline references are not autonomous model scores.

@@ -1,258 +1,182 @@
 [
   {
-    "case_id": "case_0569b3c86a56",
-    "user_input": "开出去吧，不挑出口。"
-  },
-  {
-    "case_id": "case_095b33c46d8a",
-    "user_input": "停在商场1号电梯厅附近吧。"
-  },
-  {
-    "case_id": "case_0af631c88c34",
-    "user_input": "帮我找个离商场1号电梯厅近的地方停车。"
-  },
-  {
     "case_id": "case_15a1e1f42ede",
     "user_input": "这次停充电车位，我要充电。"
   },
   {
-    "case_id": "case_1ab2e651d59f",
-    "user_input": "我要去B栋办公楼，车停近一点吧。"
+    "case_id": "case_18b474a0d49f",
+    "user_input": "我要去七鲜，想找个离那边近一点的空位。"
   },
   {
-    "case_id": "case_1b2af75bea17",
-    "user_input": "找个靠商场电梯的车位吧，哪个电梯厅都可以。"
+    "case_id": "case_1d61570437ca",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_1b7af84379ee",
-    "user_input": "走吧，找福泉路那边的出口。"
+    "case_id": "case_2329c96fa1d6",
+    "user_input": "我从商场 1 号电梯厅上楼，帮我找个近一点的空位。"
   },
   {
-    "case_id": "case_1cd44c7123bb",
-    "user_input": "今天去E栋办事，停车别离那儿太远。"
+    "case_id": "case_2eb3b7515abf",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
-    "case_id": "case_222d9fd65055",
-    "user_input": "我要去C栋办公楼，车停近一点吧。"
+    "case_id": "case_319b0e498caa",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_23189d7b9e00",
-    "user_input": "我们走吧，从哪边出去都可以。"
+    "case_id": "case_39b6094f074c",
+    "user_input": "我要去办公 B 栋，帮我找个离它近的空车位。"
   },
   {
-    "case_id": "case_27ab2bd1037d",
-    "user_input": "找条路出停车场就行。"
+    "case_id": "case_3ad2f49b43e2",
+    "user_input": "我从商场 1 号厅上楼，需要找一个无障碍空位。"
   },
   {
-    "case_id": "case_27b383cfa3fa",
-    "user_input": "今天去C栋办事，停车别离那儿太远。"
-  },
-  {
-    "case_id": "case_2c981008a475",
-    "user_input": "今天去A栋办事，停车别离那儿太远。"
-  },
-  {
-    "case_id": "case_2e859ae6a78c",
-    "user_input": "我要走金钟路出口。"
-  },
-  {
-    "case_id": "case_398b8cfb8eab",
-    "user_input": "走吧，找个出口出去。"
-  },
-  {
-    "case_id": "case_3e33450bd893",
-    "user_input": "停在商场2号电梯厅附近吧。"
+    "case_id": "case_3cc3c4e16b05",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
     "case_id": "case_403a84cb6620",
     "user_input": "我从3号电梯厅上楼，车停近一点。"
   },
   {
-    "case_id": "case_51148b3aa3cc",
-    "user_input": "帮我找个离商场3号电梯厅近的地方停车。"
+    "case_id": "case_4376b1425729",
+    "user_input": "我要去苏宁易购，帮我找个方便过去的空位。"
   },
   {
-    "case_id": "case_5252d49b777e",
-    "user_input": "去办公C栋，帮我找个附近的车位。"
+    "case_id": "case_5020f5d1cc24",
+    "user_input": "车停在商场 2 号电梯厅附近就好。"
   },
   {
-    "case_id": "case_53fb545bb12d",
-    "user_input": "我从1号电梯厅上楼，车停近一点。"
+    "case_id": "case_510d444ebba9",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
-    "case_id": "case_5b3a3a152e3f",
-    "user_input": "走吧，找协和路那边的出口。"
+    "case_id": "case_517871fac1cc",
+    "user_input": "我要去宜家，帮我找个合适的空位。"
   },
   {
-    "case_id": "case_60f664ddc100",
-    "user_input": "去办公A栋，帮我找个附近的车位。"
+    "case_id": "case_565a8578a093",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
-    "case_id": "case_61d0a8be7172",
-    "user_input": "这次需要停无障碍车位。"
+    "case_id": "case_5c5e18208be6",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_622f32e753fc",
-    "user_input": "从金钟路出去吧。"
+    "case_id": "case_5e4ff82cc5b9",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_6923276ba3b0",
-    "user_input": "帮我找个能充电的车位。"
+    "case_id": "case_70b452285d20",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
-    "case_id": "case_6b171995c254",
-    "user_input": "带我去协和路出口。"
-  },
-  {
-    "case_id": "case_6fed9391bc9d",
-    "user_input": "今天去B栋办事，停车别离那儿太远。"
-  },
-  {
-    "case_id": "case_7193ab504ff3",
-    "user_input": "找个无障碍车位，乘客要用轮椅下车。"
-  },
-  {
-    "case_id": "case_76e143a2a110",
-    "user_input": "帮我在七鲜附近找个车位。"
-  },
-  {
-    "case_id": "case_7b2b467a1dd6",
-    "user_input": "去宜家买点东西，车停近一点。"
-  },
-  {
-    "case_id": "case_7c5bcd4a7392",
-    "user_input": "我要走协和路出口。"
-  },
-  {
-    "case_id": "case_81df0053a3dc",
-    "user_input": "我想给车充会儿电，找个充电车位吧。"
+    "case_id": "case_7fed7eefd5b9",
+    "user_input": "我要去办公 D 栋，而且需要无障碍车位，请在附近找一个。"
   },
   {
     "case_id": "case_8288ec6a22d7",
     "user_input": "去出口吧，哪一个都行。"
   },
   {
-    "case_id": "case_82d8ced8c630",
-    "user_input": "去办公D栋，帮我找个附近的车位。"
+    "case_id": "case_8464a30ea523",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_84a95cb13690",
-    "user_input": "找个带充电桩的车位停一下。"
+    "case_id": "case_887effd66177",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_859fa57b994c",
-    "user_input": "我要出停车场，哪个出口都行。"
+    "case_id": "case_8d613c8fe969",
+    "user_input": "我要去办公 B 栋，也想给车充电，找个附近带充电设施的空位。"
   },
   {
-    "case_id": "case_86d15835f5f6",
-    "user_input": "走吧，找金钟路那边的出口。"
+    "case_id": "case_958737b6a257",
+    "user_input": "我需要一个无障碍车位，帮我找个空着的。"
   },
   {
-    "case_id": "case_927108001eae",
-    "user_input": "带我去福泉路出口。"
+    "case_id": "case_98027bad31c6",
+    "user_input": "我要去宜家，找一个能停这辆车的空位。"
   },
   {
-    "case_id": "case_94246642b9a2",
-    "user_input": "从福泉路出去吧。"
+    "case_id": "case_98827330b88e",
+    "user_input": "帮我找个带充电设施的空位，位置不限。"
   },
   {
-    "case_id": "case_94427d6b36e8",
-    "user_input": "去办公E栋，帮我找个附近的车位。"
+    "case_id": "case_9c82c78dd562",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
-    "case_id": "case_9ac99445b16f",
-    "user_input": "停在商场3号电梯厅附近吧。"
+    "case_id": "case_9dd667a82fb6",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
-    "case_id": "case_a4453d046b46",
-    "user_input": "我妈坐轮椅，帮我找个无障碍车位吧。"
+    "case_id": "case_a3af80e59907",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_b28d3729ab21",
-    "user_input": "我们有轮椅乘客，停无障碍车位吧。"
+    "case_id": "case_a53748356411",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
-    "case_id": "case_b5ba9473e826",
-    "user_input": "我要去七鲜，车停得方便过去就行。"
+    "case_id": "case_a54ce4cdf934",
+    "user_input": "帮我找到金钟路出口。"
   },
   {
-    "case_id": "case_b698c9823f2a",
-    "user_input": "从协和路出去吧。"
+    "case_id": "case_bf4b0f01d4db",
+    "user_input": "我要从协和路出口离开。"
   },
   {
-    "case_id": "case_b6af5dbcff8d",
-    "user_input": "我要走福泉路出口。"
+    "case_id": "case_bf967a23f4e1",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_bc6116f78d42",
-    "user_input": "我要上楼逛商场，车停得离电梯近一点。"
+    "case_id": "case_ce0873375191",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
-    "case_id": "case_c4965090d51d",
-    "user_input": "今天去D栋办事，停车别离那儿太远。"
+    "case_id": "case_d1520d5893bd",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_c65248d34163",
-    "user_input": "带我去金钟路出口。"
+    "case_id": "case_d54992fc5827",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
-    "case_id": "case_cac636888454",
-    "user_input": "去苏宁易购看看，车停近一点吧。"
+    "case_id": "case_d8d97dfaf42e",
+    "user_input": "我要从福泉路出口离开。"
   },
   {
-    "case_id": "case_cce1db82e554",
-    "user_input": "我要去A栋办公楼，车停近一点吧。"
+    "case_id": "case_e550ad483de2",
+    "user_input": "我要去办公 E 栋，车尽量停近一点。"
   },
   {
-    "case_id": "case_d2b05fb128f1",
-    "user_input": "我要去D栋办公楼，车停近一点吧。"
+    "case_id": "case_e7165c9174c1",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_d3669de015d6",
-    "user_input": "帮我找个离商场2号电梯厅近的地方停车。"
+    "case_id": "case_ecfbf0a3eeab",
+    "user_input": "我要去商场，找个方便到电梯厅的空车位就行，不指定几号厅。"
   },
   {
-    "case_id": "case_ddfc56b10e5e",
-    "user_input": "去办公B栋，帮我找个附近的车位。"
+    "case_id": "case_f0e9c8636c02",
+    "user_input": "我想停在 E 区，找个合适的空位就好。"
   },
   {
-    "case_id": "case_e308b4a1c3fa",
-    "user_input": "准备回去了，带我去出口。"
-  },
-  {
-    "case_id": "case_e380724438a6",
-    "user_input": "我要去E栋办公楼，车停近一点吧。"
-  },
-  {
-    "case_id": "case_e4949daa409a",
-    "user_input": "我要逛宜家，帮我找个附近的车位。"
-  },
-  {
-    "case_id": "case_ed8394fa1ab8",
-    "user_input": "帮我找个出口吧。"
-  },
-  {
-    "case_id": "case_ee047d6d3903",
-    "user_input": "去七鲜买菜，找个近一点的地方停车吧。"
-  },
-  {
-    "case_id": "case_f143b326a940",
-    "user_input": "今天去宜家，停车别离那儿太远。"
+    "case_id": "case_f48f4356a1d8",
+    "user_input": "我想停在 B 区，找个空车位就行。"
   },
   {
     "case_id": "case_f5fdcf5ff8f4",
     "user_input": "去商场逛逛，停在电梯厅附近就行。"
   },
   {
-    "case_id": "case_f804d6e309b6",
-    "user_input": "我从2号电梯厅上楼，车停近一点。"
+    "case_id": "case_f780007cf299",
+    "user_input": "我要离开停车场，找个出口就行，不指定哪条路。"
   },
   {
-    "case_id": "case_f85b0e525674",
-    "user_input": "今天逛苏宁易购，停车别离那儿太远。"
-  },
-  {
-    "case_id": "case_fbe8b16701c4",
-    "user_input": "我要去苏宁易购，帮我找个附近的车位。"
+    "case_id": "case_feb99df1ef02",
+    "user_input": "帮我停在 A 区的空位。"
   }
 ]

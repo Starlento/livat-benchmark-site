@@ -3,38 +3,43 @@
 Live site: https://starlento.github.io/livat-benchmark-site/
 
 Static public introduction, installation instructions, HTTP interface overview and
-searchable 64-case catalogue. GitHub Pages publishes the root of `main`;
+searchable 45-task catalogue. GitHub Pages publishes the root of `main`;
 `.nojekyll` disables Jekyll.
 
 ## Current benchmark snapshot
 
-The site is synchronized with the benchmark's **v1.7.1** release, commit
-`ce584c784d6b9583b714ebd89b735d7772b2ea36`, on 2026-10-12.
-Displayed versions are a snapshot of the benchmark's sole version declaration,
-`livat_bench/_version.py`; this site does not define a separate protocol, Schema,
-data or calibration version. CARLA 0.9.16 and Livat B3 v1.3.0 are external
+The site is synchronized with the benchmark's **v1.7.3+paper.1** release on the
+`paper` branch, tag `v1.7.3+paper.1`, on 2026-10-19. The site follows only `paper`
+releases (`<main version>+paper.N`); releases of the internal `main` branch do not
+update it. Displayed versions are a snapshot of the benchmark's sole version
+declaration, `livat_bench/_version.py`. CARLA 0.9.16 and Livat B3 v1.3.0 are external
 dependency requirements. Release and documentation links are pinned to the same tag.
 
-This snapshot fixes destination match distance to the bay polygon centroid's shortest Euclidean distance to the target building polygon area, ignoring intervening obstacles. Building components and holes are preserved. The 20/40/60/80m Q bands and eligibility/facility rules remain. This geometric line does not certify a walking or driving path.
+This release replaces the 64 templated tasks with a curated 45-task set: any mall lift
+lobby 12, any exit 12, named lobby or office 5, shop destination 4, special bay 6, zone
+request 3 and named exit 3, across 18 scenes with 116 quality-tier references. 39 tasks
+are scored statically (parking `100 × (0.50 Q + 0.50 E)`, exit `100 E`, equal weight per
+task); 6 dynamic tasks with scripted vehicles report diagnostics with null motion
+efficiency and total score. Four diagnostic tags (sparse-cue search, sign grounding,
+search trade-off, change adaptation) cover 13, 13, 23 and 6 tasks. Four previously
+published tasks keep their `case_id`, prompt and start pose: `case_f5fdcf5ff8f4`,
+`case_403a84cb6620`, `case_15a1e1f42ede` and `case_8288ec6a22d7`.
 
-Parking driving and maneuver baselines use the same shortest route from the task start to a currently submittable Q=1 bay. Each efficiency is capped at full credit. The current set has 44 parking references and 40 exit references; 28 parking routes changed and 6 parking cases have zero-distance baselines. Cases, requests and starts are unchanged.
+Global `GET /scene` remains exclusively for human observer WebUI rendering. Models,
+policies and execution clients must not access or consume global map semantics through
+input, memory, caches or tools. Building semantic boundaries are not walls, facilities
+and occupancy do not establish eligibility, and map connectors are not scored exits.
 
-`GET /local-slots` exposes model-usable anonymous bay geometry in the rear-axle-relative 60x40m window: 40m forward, 20m rear, 20m to either side. Free/occupied/unknown support remains observation-grounded; no printed bay number, global/tracking identity, charging/accessible semantics or task suitability is exposed. Parking accepts only current `local_slots` `polygon_local_m` geometry. Eligibility, real occupancy/dimensions, unique correspondence, fresh observation, motion and budgets still apply. Path limits are reported as `termination_reasons`; `GET /observation?view=decision` provides the lighter decision view.
+265 unit tests and the source-audited 45-task / 18-scene / 116-reference validation
+passed. On the release build, all 18 scene fixtures passed live and every distinct
+reference of the four retained tasks executed live; the other 35 static full-match
+references were executed during the 2026-10-17 implementation acceptance. The wheel
+built from the tagged archive passed standalone installation checks. Live runs are
+private-route controller fixtures, not autonomous model results. This site publishes no
+model leaderboard or model scores.
 
-Global `GET /scene` remains exclusively for human observer WebUI rendering. Models, policies and execution clients must not access or consume global map semantics through input, memory, caches or tools. Building semantic boundaries are not walls, facilities and occupancy do not establish eligibility, and map connectors are not scored exits.
-
-`observer` serves the static scene without CARLA. `campaign-next --observer-port` starts a separate observer per attempt. `abandon` retains a zero-score valid attempt; it cannot earn an infrastructure retry. Operator-only `campaign-status` and `campaign-recover --note` inspect and register verified saved evidence under an OS lock, retaining attempts and an audit; unknown or corrupted interruptions cannot be forced into retries.
-
-The release retains device metadata, runtime state, request receipts and recovery,
-endpoint-only RGB snapshots, local navigation annotations, and separate observer /
-replay APIs. Historical images remain readable during the episode's HTTP service
-lifetime; historical path capabilities expire after a new observation; old local coordinates cannot be directly submitted as current geometry.
-Final results remain readable for at most 120 seconds, with explicit acknowledgement
-after saving.
-
-232 tests and the 64-case / 84-reference validation passed. 1,531 positive distance annotations were independently recomputed; all 44 current parking references score 100 in offline replay, with 44 prior references and 3 saved runs also replayed for comparison. The formal wheel passed independent installation, immutable-resource, standard-library client and execution/observer HTTP checks. No new CARLA run or physical RGB capture/review took place. Historical records keep their original build identities and scores. These checks are not autonomous/model scores. Start new campaigns with the matching package/client/schema; do not resume old experiments across scoring builds.
-The release retains a failed full-source audit: 35 frozen files in the independently maintained adjacent agentic_parking harness drifted. Live interface and private-route controller checks are not
-autonomous model results. This site publishes no model leaderboard or model scores.
+User prompts are shown in the original Chinese exactly as given to the model; the rest
+of the site is in English.
 
 ## Public case catalogue
 
@@ -50,9 +55,9 @@ https://starlento.github.io/livat-benchmark-site/atlas.html
 The owner explicitly authorized publishing the complete local referee atlas,
 including full-map geometry, per-bay scores, answer sets and offline reference routes.
 `atlas.html` is copied byte-for-byte from the tagged benchmark's `task-atlas.html`;
-its checksum is in `atlas-sha256.txt`. The 64 cases and 1,325 bays bind to dataset
-`5fb00d9b78016196fc13ce7998c26475926b143ea7705374e4dad9939277f9ad`.
-This snapshot includes 5,892 continuous navigation curves and no run overlays.
+its checksum is in `atlas-sha256.txt`. The 45 tasks and 1,325 bays bind to dataset
+`25222ef8f29cd263ff76b30a8ba0c017e63e6daa0dd3451b44dc43a591adfebd`.
+This snapshot includes 5,902 continuous navigation curves and no run overlays.
 Human review only: harnesses must not use the atlas as prior map, answer or route
 knowledge. Offline references are not autonomous model scores.
 

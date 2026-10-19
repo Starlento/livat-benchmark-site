@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Livat Task Benchmark — 面向 CARLA parking harness 的任务环境与评测器。安装、64 题公开目录、可靠动作回执、终点快照与完整交互图谱。">
+  <meta name="description" content="Livat Task Benchmark — a task environment and evaluator for CARLA parking harnesses. Installation, a public 45-task catalogue, reliable action receipts, endpoint snapshots and the full interactive atlas.">
   <title>Livat · Task Benchmark</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -11,81 +11,81 @@
 <body>
 <header>
   <a class="brand" href="#"><span class="mark">L.</span>Livat <small>TASK BENCHMARK</small></a>
-  <nav aria-label="主导航">
-    <a href="atlas.html">完整交互图谱 ↗</a>
-    <a href="#tasks">任务目录</a>
-    <a href="#install">安装</a>
-    <a href="#protocol">接入协议</a>
+  <nav aria-label="Main navigation">
+    <a href="atlas.html">Full interactive atlas ↗</a>
+    <a href="#tasks">Task catalogue</a>
+    <a href="#install">Install</a>
+    <a href="#protocol">Interface</a>
     <a href="https://github.com/Starlento/livat-benchmark-site">GitHub ↗</a>
   </nav>
 </header>
 <main>
   <section class="hero">
     <div>
-      <p class="eyebrow">CARLA 0.9.16 / LIVAT B3 / PACKAGE v1.7.1</p>
-      <h1>找车位，也找出口。<br><span>从用户原话开始。</span></h1>
-      <p class="intro">面向 parking harness 的任务环境与评测器。让系统从用户原话出发，理解视觉、规划行动、记忆场景，找到合适车位，或驶达用户想去的出口。</p>
+      <p class="eyebrow">CARLA 0.9.16 / LIVAT B3 / PACKAGE v1.7.3+paper.1</p>
+      <h1>Find a bay. Find the exit.<br><span>Starting from what the user says.</span></h1>
+      <p class="intro">A task environment and evaluator for parking harnesses. Starting from the user's own words, the system must understand what it sees, plan its actions, remember the scene, and find a suitable bay — or drive to the exit the user wants.</p>
       <div class="buttons">
-        <a class="primary" href="#tasks">浏览 64 个任务 <span>↗</span></a>
-        <a class="secondary" href="atlas.html">打开完整图谱 ↗</a>
+        <a class="primary" href="#tasks">Browse 45 tasks <span>↗</span></a>
+        <a class="secondary" href="atlas.html">Open full atlas ↗</a>
       </div>
-      <p class="hero-note">停车选位交接 · 出口到达自动完成 · Python ≥ 3.10 · 独立 HTTP 接入</p>
+      <p class="hero-note">Parking: bay-selection handover · Exit: completes automatically on arrival · Python ≥ 3.10 · Standalone HTTP interface</p>
     </div>
     <aside class="flow-card">
-      <div class="card-top"><span>THE TASK LOOP</span><span class="live-dot">接口流程</span></div>
-      <div class="flow-step"><b>01</b><div><strong>观察</strong><span>用户目标 · 同帧 RGB · 局部匿名几何</span></div></div>
-      <div class="flow-step"><b>02</b><div><strong>决策与移动</strong><span>认证导航路径 · 分段移动 · 终点快照</span></div></div>
-      <div class="flow-step"><b>03</b><div><strong>完成用户目标</strong><span>停车选位交接 · 车身中心进入出口区域</span></div></div>
-      <div class="card-bottom">视觉理解与决策由 harness 完成</div>
+      <div class="card-top"><span>THE TASK LOOP</span><span class="live-dot">Interface flow</span></div>
+      <div class="flow-step"><b>01</b><div><strong>Observe</strong><span>User goal · same-frame RGB · local anonymous geometry</span></div></div>
+      <div class="flow-step"><b>02</b><div><strong>Decide and move</strong><span>Certified navigation paths · segmented moves · endpoint snapshots</span></div></div>
+      <div class="flow-step"><b>03</b><div><strong>Fulfil the user's goal</strong><span>Parking-bay handover · vehicle centre enters the exit zone</span></div></div>
+      <div class="card-bottom">Visual understanding and decisions are made by the harness</div>
     </aside>
   </section>
 
   <div class="metrics">
-    <div><b>64</b><span>冻结任务</span></div>
-    <div><b>4</b><span>任务类别</span></div>
-    <div><b>6</b><span>RGB 相机</span></div>
-    <div><b>60 × 40 m</b><span>当前感知窗口</span></div>
+    <div><b>45</b><span>Curated tasks</span></div>
+    <div><b>4</b><span>Diagnostic tags</span></div>
+    <div><b>6</b><span>RGB cameras</span></div>
+    <div><b>60 × 40 m</b><span>Current perception window</span></div>
   </div>
 
   <section id="release">
     <div class="section-head">
-      <div><p class="eyebrow">CURRENT RELEASE / v1.7.1</p><h2>停车距离，量到建筑最近点。</h2></div>
-      <p>车位中心到目标建筑多边形取最近直线距离。<br>忽略沿线障碍物，保留原评分档位。</p>
+      <div><p class="eyebrow">PAPER RELEASE / v1.7.3+paper.1</p><h2>45 curated tasks, one complete run each.</h2></div>
+      <p>Cut from v1.7.3 for the paper: seven task features and four diagnostic tags.<br>39 statically scored tasks and 6 dynamic diagnostics across 18 scenes.</p>
     </div>
     <div class="release-grid">
-      <article><span class="feature-label">距离修复</span><h3>从车位中心量到建筑。</h3><p>以车位多边形质心为起点，量到目标建筑多边形的最近点，忽略沿线墙柱与停放车辆。建筑保留B3核心区／电梯厅的部件与孔洞；这条直线不表示通行路径。</p></article>
-      <article><span class="feature-label">满分基准</span><h3>两项效率使用同一路线。</h3><p>从本题起点到Q=1车位可提交位置求最短行驶路线，等长时优先较少操作。距离与操作次数取自该路线，各效率项封顶满分；44条停车参考与40条出口参考共84条。</p></article>
-      <article><span class="feature-label">当前几何</span><h3>提交本帧感知车位。</h3><p>停车只接受当前local_slots的polygon_local_m，不提交车位号。局部感知为60 × 40米窗口，前40米、后20米、左右各20米；车位占用、真实尺寸、类型匹配与观测新鲜度继续检查。</p></article>
+      <article><span class="feature-label">Curated task set</span><h3>Each task is designed, not templated.</h3><p>Any mall lift lobby 12, any exit 12, named lobby or office 5, shop destination 4, special bay 6, zone request 3 and named exit 3. Every task is one complete episode; a few paired tasks deliberately share a start pose and scene so that only the user goal differs. Four previously published tasks keep their original case_id, user prompt and start pose; their answers and references follow the current rules.</p></article>
+      <article><span class="feature-label">Diagnostic tags</span><h3>What each task is designed to probe.</h3><p>Sparse-cue search (13 tasks), sign grounding (13), search trade-off (23) and change adaptation (6). A task carries at most one primary and one secondary tag, and six baseline scenarios carry none. Tags are evaluator-side analysis labels and are never given to the system under test.</p></article>
+      <article><span class="feature-label">Static and dynamic scenes</span><h3>Scripted vehicles can change the scene.</h3><p>Static scenes may add parked vehicles to originally free bays. Six dynamic tasks add a scripted vehicle that parks, departs or blocks a lane, triggered by simulation time or ego position. They report completion, quality, waiting, path and event data; motion efficiency and total score are null and stay out of the static ranking.</p></article>
     </div>
-    <p class="caption">当前版本来自 benchmark 的唯一 package 声明。服务端、导出客户端与 Schema 须使用同一发布。<a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.1/docs/RELEASE_NOTES.md">发布说明 ↗</a>（需仓库访问权限）</p>
+    <p class="caption">The current version comes from the benchmark's single package declaration. The server, exported client and Schema must all come from the same release. <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/docs/RELEASE_NOTES.md">Release notes ↗</a> · <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/docs/TASK_DESIGN.md">Task design ↗</a> (repository access required)</p>
   </section>
 
   <section id="tasks">
     <div class="section-head">
-      <div><p class="eyebrow">01 / PUBLIC TASK CATALOGUE</p><h2>用户怎么说，任务就怎么开始。</h2></div>
-      <p>电梯厅 27 题 · 特殊位 8 题 · 购物目标 9 题 · 出口智行 20 题。<br>输入关键词，找到你关心的场景。</p>
+      <div><p class="eyebrow">01 / PUBLIC TASK CATALOGUE</p><h2>Each task begins with what the user says.</h2></div>
+      <p>Any mall lift lobby 12 · Any exit 12 · Named lobby or office 5 · Shop destination 4 · Special bay 6 · Zone request 3 · Named exit 3.<br>Type a keyword to find the scenarios you care about.</p>
     </div>
-    <label class="search-label" for="search">搜索用户原话或题目 ID</label>
-    <div class="search-row"><input type="search" id="search" placeholder="试试「出口」「充电」「宜家」" autocomplete="off"><span id="count" role="status" aria-live="polite">加载任务…</span></div>
-    <div id="case-list" class="cases" aria-label="公开任务目录"></div>
-    <noscript><p>启用 JavaScript 查看任务目录，或下载 <a href="public-cases.json">公开任务 JSON</a>。</p></noscript>
-    <p class="caption">公开目录由 benchmark 的 boundary.py 显式构造，仅包含 case_id 与 user_input。<a href="atlas.html">完整交互图谱 ↗</a> 经所有者授权公开地图、评分答案与 84 条离线参考路线，供人工审阅；harness 不得将其用作先验地图、答案或路线知识。</p>
+    <label class="search-label" for="search">Search user prompts (original Chinese) or task IDs</label>
+    <div class="search-row"><input type="search" id="search" placeholder="Try 出口 (exit), 充电 (charging), 宜家 (IKEA)" autocomplete="off"><span id="count" role="status" aria-live="polite">Loading tasks…</span></div>
+    <div id="case-list" class="cases" aria-label="Public task catalogue: task ID and user prompt (original Chinese)"></div>
+    <noscript><p>Enable JavaScript to view the task catalogue, or download the <a href="public-cases.json">public task JSON</a>.</p></noscript>
+    <p class="caption">Each card shows a task ID and its user prompt in the original Chinese, exactly as given to the model. The public catalogue is constructed explicitly by the benchmark's boundary.py and contains only case_id and user_input. With the owner's authorisation, the <a href="atlas.html">full interactive atlas ↗</a> publishes the map, scoring answers and 116 offline reference routes for human review; harnesses must not use it as prior knowledge of the map, answers or routes.</p>
   </section>
 
   <section id="install">
     <div class="section-head">
-      <div><p class="eyebrow">02 / GET STARTED</p><h2>一个 wheel，两种平台。</h2></div>
-      <p>Linux / Windows 共用纯 Python 安装包。<br>CARLA SDK 须与服务端及 Python ABI 匹配。</p>
+      <div><p class="eyebrow">02 / GET STARTED</p><h2>One wheel, two platforms.</h2></div>
+      <p>Linux and Windows share one pure-Python package.<br>The CARLA SDK must match the server and the Python ABI.</p>
     </div>
     <div class="install-grid">
       <div class="install-steps">
-        <article><span>01</span><div><h3>准备模拟环境</h3><p>安装 <a href="https://github.com/carla-simulator/carla/releases/tag/0.9.16">CARLA 0.9.16 ↗</a>，部署 Livat B3 v1.3.0 地图与匹配的 CARLA Python API。地图包下载与安装说明待提供。</p></div></article>
-        <article><span>02</span><div><h3>安装 benchmark</h3><p>从 <a href="https://github.com/Starlento/livat-task-benchmark/releases/tag/v1.7.1">v1.7.1 Release ↗</a> 下载 wheel。Release 位于私有仓库，需要相应访问权限。安装本包不会安装或替换 CARLA SDK。</p></div></article>
-        <article><span>03</span><div><h3>启动任务服务</h3><p>按地图交付说明启动专用 CARLA 实例，再启动评测器。每题独占同步时钟，并提供 HTTP 地址与独立 token。相机沿用地图默认曝光。</p></div></article>
+        <article><span>01</span><div><h3>Prepare the simulation environment</h3><p>Install <a href="https://github.com/carla-simulator/carla/releases/tag/0.9.16">CARLA 0.9.16 ↗</a>, then deploy the Livat B3 v1.3.0 map and the matching CARLA Python API. Download and installation instructions for the map package are to be provided.</p></div></article>
+        <article><span>02</span><div><h3>Install the benchmark</h3><p>Download the wheel from the <a href="https://github.com/Starlento/livat-task-benchmark/releases/tag/v1.7.3%2Bpaper.1">v1.7.3+paper.1 Release ↗</a>. The release is hosted in a private repository and requires the corresponding access. Installing this package does not install or replace the CARLA SDK.</p></div></article>
+        <article><span>03</span><div><h3>Start the task service</h3><p>Launch a dedicated CARLA instance following the map delivery instructions, then start the evaluator. Each task has exclusive use of a synchronous clock and gets its own HTTP address and token. Cameras use the map's default exposure.</p></div></article>
       </div>
       <div class="code-card">
-        <div class="code-title"><span>TERMINAL / PYTHON ≥ 3.10</span><button id="copy" type="button">复制</button></div>
-        <pre><code id="install-code">python -m pip install ./livat_task_benchmark-1.7.1-py3-none-any.whl
+        <div class="code-title"><span>TERMINAL / PYTHON ≥ 3.10</span><button id="copy" type="button">Copy</button></div>
+        <pre><code id="install-code">python -m pip install ./livat_task_benchmark-1.7.3+paper.1-py3-none-any.whl
 
 livat-bench list-cases
 livat-bench validate
@@ -95,77 +95,77 @@ livat-bench serve \
   --host 127.0.0.1 --port 2600 \
   --api-port 8765 \
   --output-dir ./bench-output</code></pre>
-        <p>换行写法适用于 Bash。PowerShell 请合并为单行；将 &lt;case_id&gt; 替换为 list-cases 返回的题目 ID。</p>
+        <p>The line continuations are for Bash. In PowerShell, join the command into a single line. Replace &lt;case_id&gt; with a task ID returned by list-cases.</p>
       </div>
     </div>
-    <p class="caption">harness 在独立进程中使用同包的 BenchClient；无需第二个客户端包。也可运行 <code>livat-bench export-client ./public-client</code> 导出仅依赖标准库的客户端、类型、Schema 和分段取图 / 断线恢复示例。</p>
+    <p class="caption">The harness uses BenchClient from the same package in its own process; no second client package is needed. You can also run <code>livat-bench export-client ./public-client</code> to export a standard-library-only client, types, Schema, and examples of segmented image retrieval and disconnect recovery.</p>
   </section>
 
   <section id="protocol">
     <div class="section-head">
-      <div><p class="eyebrow">03 / HTTP INTERFACE</p><h2>通过接口，让系统作出选择。</h2></div>
-      <p>harness 在自己的进程中运行。<br>所有请求携带本题 Bearer token。</p>
+      <div><p class="eyebrow">03 / HTTP INTERFACE</p><h2>Let the system choose, through the interface.</h2></div>
+      <p>The harness runs in its own process.<br>Every request carries the task's Bearer token.</p>
     </div>
-    <div class="table-wrap" tabindex="0" role="region" aria-label="HTTP 接口一览，可横向滚动">
+    <div class="table-wrap" tabindex="0" role="region" aria-label="HTTP interface overview, horizontally scrollable">
       <table>
-        <thead><tr><th scope="col">请求</th><th scope="col">能力</th></tr></thead>
+        <thead><tr><th scope="col">Request</th><th scope="col">Capability</th></tr></thead>
         <tbody>
-          <tr><td>GET /metadata</td><td>读取全部六路相机、内外参、车辆几何与运动约束</td></tr>
-          <tr><td>GET /state</td><td>查询当前生命周期、执行请求、sim_frame、action_seq 和预算</td></tr>
-          <tr><td>GET /observation</td><td>读取同帧 RGB 引用、局部占用、车位几何、几何规则与认证路径；view=decision 返回决策所需的轻量观测</td></tr>
-          <tr><td>GET /local-slots</td><td>读取当前或历史观测的匿名车位几何与占用证据；只读，不推进仿真</td></tr>
-          <tr><td>GET /snapshot?observation_id=…</td><td>一次下载固定观测、清单和对应同帧 PNG；省略 ID 取最新</td></tr>
-          <tr><td>GET /images/…</td><td>读取已发布的原始 RGB；历史图片在本题 HTTP 服务期内可读</td></tr>
-          <tr><td>GET /requests/&lt;request_id&gt;</td><td>查询动作回执，超时或断线后恢复同一个请求</td></tr>
-          <tr><td>GET /result</td><td>读取固定终态公开结果，重复读取不重新评分</td></tr>
-          <tr><td>POST /move</td><td>沿当前 path_id 执行自选弧长 distance_m，返回动作回执</td></tr>
-          <tr><td>POST /wait</td><td>原地等待 1–10 秒，回执引用完成后的观测</td></tr>
-          <tr><td>POST /cameras</td><td>选择相机子集或全部关闭；设备描述始终完整</td></tr>
-          <tr><td>POST /costs</td><td>报告累计模型请求与 token 成本</td></tr>
-          <tr><td>POST /submit</td><td>停车题提交当前local_slots返回的polygon_local_m；出口题到达区域后自动结束</td></tr>
-          <tr><td>POST /abandon</td><td>主动结束当前题，记零分有效尝试；不是基础设施错误，不获得免费重试</td></tr>
-          <tr><td>POST /acknowledge</td><td>保存终态结果后显式确认，提前关闭 HTTP 服务</td></tr>
+          <tr><td>GET /metadata</td><td>Read all six cameras, intrinsics and extrinsics, vehicle geometry and motion constraints</td></tr>
+          <tr><td>GET /state</td><td>Query the current lifecycle, in-flight requests, sim_frame, action_seq and budget</td></tr>
+          <tr><td>GET /observation</td><td>Read same-frame RGB references, local occupancy, bay geometry, geometric rules and certified paths; view=decision returns a lightweight observation for decision-making</td></tr>
+          <tr><td>GET /local-slots</td><td>Read anonymous bay geometry and occupancy evidence for the current or a past observation; read-only, does not advance the simulation</td></tr>
+          <tr><td>GET /snapshot?observation_id=…</td><td>Download a fixed observation, its manifest and the matching same-frame PNGs in one call; omit the ID to get the latest</td></tr>
+          <tr><td>GET /images/…</td><td>Read published raw RGB images; past images remain readable while the task's HTTP service is running</td></tr>
+          <tr><td>GET /requests/&lt;request_id&gt;</td><td>Query an action receipt; resume the same request after a timeout or disconnect</td></tr>
+          <tr><td>GET /result</td><td>Read the fixed final public result; repeated reads do not re-score</td></tr>
+          <tr><td>POST /move</td><td>Drive a self-chosen arc length distance_m along the current path_id; returns an action receipt</td></tr>
+          <tr><td>POST /wait</td><td>Wait in place for 1–10 s; the receipt references the observation taken on completion</td></tr>
+          <tr><td>POST /cameras</td><td>Select a subset of cameras or turn all of them off; device descriptions are always complete</td></tr>
+          <tr><td>POST /costs</td><td>Report cumulative model requests and token cost</td></tr>
+          <tr><td>POST /submit</td><td>Parking tasks submit the polygon_local_m returned by the current local_slots; exit tasks end automatically on reaching the zone</td></tr>
+          <tr><td>POST /abandon</td><td>Voluntarily end the current task, recorded as a valid zero-score attempt; this is not an infrastructure error and earns no free retry</td></tr>
+          <tr><td>POST /acknowledge</td><td>Explicitly confirm after saving the final result, closing the HTTP service early</td></tr>
         </tbody>
       </table>
     </div>
     <div class="callouts">
-      <article><h3>观察后，使用新的路径能力</h3><p>每次新观测生成新的路径能力和单观测车位 ID；历史快照仍可读取。几何提交引用当前观测的车体坐标。移动距离至少 0.2 米，且不超过当前路径上限；前进或倒车由路径方向决定。</p></article>
-      <article><h3>沿途观察，需要主动分段</h3><p>一次移动只生成终点观测，不提供沿途图像。每段完成后用 <code>snapshot(receipt.output_observation_id)</code> 获取观测和图片，再用新路径决策。预算中断或出口自动完成时需核对实际距离与结果，避免把旧观测当作终点图。</p></article>
-      <article><h3>恢复执行，保留原请求身份</h3><p>move、wait、cameras、costs、submit、abandon 均携带 <code>request_id</code>。超时后用 <code>receipt()</code> 或 <code>wait_for()</code> 查询；相同 ID 与内容不会重复执行，不同内容复用 ID 会冲突。</p></article>
-      <article><h3>局部导航，支持精确接续</h3><p>进入点、曲线段身份与弧长 station 帮助分段后核对剩余路线。前沿 branch ID 用于归组；下一步执行仍使用最新 <code>path_id</code>。termination_reasons 说明当前认证限制，不提供隐藏道路；道路区间不表示车位匹配分或额外交接限制。</p></article>
-      <article><h3>六路相机，按需采集</h3><p>Model 3 前风挡正中央一路 2560 × 1440、FOV 90°；B 柱两路、前翼子板两路及车尾一路均为 1920 × 1080、FOV 140°。1 Hz 为传感器采样时钟，不代表移动中的视频流。</p></article>
-      <article><h3>两种终点，保存结果后确认</h3><p>停车题提交当前感知车位的四角几何，只能最终提交一次。实际占用、真实尺寸、目标匹配、唯一几何对应、观测新鲜度、运动合同与预算继续参与评分。出口题到达区域即结束，无需选位或停稳；读取 <code>result()</code> 保存终态评分。回执、结果和历史图片最多保留 120 秒，保存后调用 <code>acknowledge()</code>。</p></article>
+      <article><h3>After observing, use the new path capabilities</h3><p>Each new observation issues new path capabilities and per-observation bay IDs; past snapshots remain readable. Geometry submissions reference vehicle-frame coordinates from the current observation. A move must be at least 0.2 m and no longer than the current path's limit; forward or reverse is determined by the path direction.</p></article>
+      <article><h3>To observe along the way, split the move</h3><p>A move produces only an endpoint observation, with no images along the way. After each segment, call <code>snapshot(receipt.output_observation_id)</code> to get the observation and images, then decide using the new paths. When a move is cut short by the budget or an exit task completes automatically, check the actual distance and the result so that an old observation is not mistaken for the endpoint view.</p></article>
+      <article><h3>Resume execution with the original request identity</h3><p>move, wait, cameras, costs, submit and abandon all carry a <code>request_id</code>. After a timeout, query it with <code>receipt()</code> or <code>wait_for()</code>. The same ID with the same content is never executed twice; reusing an ID with different content causes a conflict.</p></article>
+      <article><h3>Local navigation with precise continuation</h3><p>Entry points, curve-segment identities and arc-length stations help verify the remaining route after a segmented move. Frontier branch IDs are used for grouping; the next move still uses the latest <code>path_id</code>. termination_reasons explain the current certification limits and do not reveal hidden roads; road intervals do not indicate bay match scores or extra handover restrictions.</p></article>
+      <article><h3>Six cameras, captured on demand</h3><p>The Model 3 carries one camera at the centre of the windscreen at 2560 × 1440, FOV 90°; two on the B-pillars, two on the front fenders and one at the rear, each at 1920 × 1080, FOV 140°. 1 Hz is the sensor sampling clock, not a video stream during motion.</p></article>
+      <article><h3>Two kinds of endpoint; confirm after saving the result</h3><p>Parking tasks submit the four-corner geometry of a bay perceived in the current frame, and only one final submission is allowed. Actual occupancy, true dimensions, goal match, unique geometric correspondence, observation freshness, the motion contract and the budget all still count towards the score. Exit tasks end on reaching the zone, with no bay selection or full stop required; read <code>result()</code> to save the final score. Receipts, results and past images are retained for at most 120 s; call <code>acknowledge()</code> after saving.</p></article>
     </div>
-    <p class="caption">完整字段与约束见 <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.1/client/PROTOCOL.md">公共协议 ↗</a> 和 <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.1/docs/CLIENT_GUIDE.md">客户端指南 ↗</a>（需仓库访问权限）。业务动作计数 action_seq 与实际仿真帧 sim_frame 分开；回执 completed 不等于任务成功。</p>
+    <p class="caption">For all fields and constraints, see the <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/client/PROTOCOL.md">public protocol ↗</a> and the <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/docs/CLIENT_GUIDE.md">client guide ↗</a> (repository access required). The business action counter action_seq is separate from the actual simulation frame sim_frame; a completed receipt does not mean the task succeeded.</p>
   </section>
 
   <section id="observer">
     <div class="section-head">
-      <div><p class="eyebrow">04 / OBSERVER &amp; REPLAY</p><h2>独立观察，保留真实运行记录。</h2></div>
-      <p>观察通道默认关闭，只读且使用独立凭证。<br>提供统一地图 API，WebUI 可据此渲染。</p>
+      <div><p class="eyebrow">04 / OBSERVER &amp; REPLAY</p><h2>Independent observation, faithful run records.</h2></div>
+      <p>The observer channel is off by default, read-only and uses separate credentials.<br>It provides a unified map API that a WebUI can render.</p>
     </div>
     <div class="callouts">
-      <article><h3>实时观察</h3><p>启动单题或 <code>campaign-next</code> 时增加 <code>--observer-port 8766</code>，启用独立进程和本机端口。提供场景、状态、事件、公开导航、实际采集快照及终态公开结果；不提供答案、逐车位分数或参考路线。</p></article>
-      <article><h3>无模拟器的静态地图</h3><p><code>livat-bench observer --api-port 8767</code> 只提供统一的 <code>GET /scene</code>，无需 CARLA 或任务记录。建筑多边形保留部件与孔洞，充电／无障碍／微型标记独立，可重叠。</p></article>
-      <article><h3>离线回放</h3><p>使用 <code>livat-bench replay &lt;run_folder&gt;/public --api-port 8766</code> 读取保存的记录。回放不连接 CARLA、不重新评分；未完成的运行保持未完成状态。</p></article>
+      <article><h3>Live observation</h3><p>Add <code>--observer-port 8766</code> when starting a single task or <code>campaign-next</code> to enable a separate process on a local port. It serves the scene, state, events, public navigation, actually captured snapshots and the final public result; it does not serve answers, per-bay scores or reference routes.</p></article>
+      <article><h3>Static map without a simulator</h3><p><code>livat-bench observer --api-port 8767</code> serves only the unified <code>GET /scene</code> and needs neither CARLA nor task records. Building polygons keep their parts and holes; charging / accessible / compact markers are independent and may overlap.</p></article>
+      <article><h3>Offline replay</h3><p>Use <code>livat-bench replay &lt;run_folder&gt;/public --api-port 8766</code> to read saved records. Replay does not connect to CARLA and does not re-score; incomplete runs remain incomplete.</p></article>
     </div>
-    <p class="caption">harness 项目的 WebUI 可用地图向人类展示；模型、策略和执行客户端禁止调用或使用，禁止回流到输入、记忆、缓存或工具结果。展示通道的端口与凭证独立。建筑语义边界不是物理墙，设施／固定占用不是任务准入，地图出入口不是成功区域或可通行性证明。记录、图片及 token 留在评测端。<a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.1/docs/OBSERVER.md">观察与回放说明 ↗</a>（需仓库访问权限）</p>
+    <p class="caption">A harness project's WebUI may use the map for display to humans; models, policies and execution clients must not call or use it, and it must never flow back into inputs, memory, caches or tool results. The display channel has its own port and credentials. Semantic building boundaries are not physical walls, facilities / fixed occupancy do not determine task eligibility, and map entrances and exits are neither success zones nor proof of drivability. Records, images and tokens stay on the evaluator side. <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/docs/OBSERVER.md">Observer and replay guide ↗</a> (repository access required)</p>
   </section>
 
   <section class="evaluation">
     <p class="eyebrow">EVALUATION / SCOPE</p>
-    <h2>评测的是完整系统。</h2>
-    <p>系统负责视觉理解、规划、记忆与选择；评测器负责环境、运动合同和计分。本站未发布模型成绩。离线参考回放、使用私有路线的 controller fixture 与模型正式评测分别记录。</p>
-    <p>停车题按车位匹配 50%、行驶距离 30%、转向及倒车 20% 计分；出口题按行驶距离 60% 与转向 40% 计分。四类汇总权重依次为电梯厅 45%、特殊位 15%、购物目标 15%、出口智行 25%。</p>
-    <p>目的地匹配按车位中心到建筑多边形的最近直线距离分档：≤20／40／60／80米对应Q=1／0.75／0.5／0.25，超过80米为0。沿线障碍物不影响这项距离；车位本身的占用、尺寸与类型继续独立判断。评分表和驾驶参考已重生成，28条停车基准路线变化，6道题的基准距离为0。升级后新建campaign，旧实验保留原构建。</p>
-    <p>v1.7.1 的 232 项测试、64 题 / 84 条参考验证通过，1531条正分距离注释独立复算；44条新停车参考重放均为100分，另重放44条旧参考与3条历史运行。正式安装包另验独立安装、只读资源、标准库客户端和执行／观察HTTP。本次没有新CARLA运行或RGB采集／审查；历史轨迹与原成绩保留，这些验证不代表模型自主任务成功。</p>
-    <p><strong>完整来源审计未通过。</strong>冻结记录中独立外部 agentic_parking 的 35 个来源文件发生漂移，交付保留这一溯源限制。普通验证通过不能替代完整来源审计；历史性能与图像证据保留各自原构建身份。</p>
-    <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.1/docs/RUNTIME_VALIDATION.md">运行验证报告（需访问权限）↗</a>
+    <h2>What is evaluated is the whole system.</h2>
+    <p>The system is responsible for visual understanding, planning, memory and choice; the evaluator is responsible for the environment, the motion contract and scoring. This site publishes no model scores. Offline reference replays, controller fixtures that use private routes, and formal model evaluations are recorded separately.</p>
+    <p>A valid static parking task scores 100 × (0.50 Q + 0.50 E) and an exit task 100 × E, where Q is destination match and E is motion efficiency against a reference with joint cost C = 0.60 L/100 + 0.40 T (L: driving distance in metres, T: manoeuvres). The static mean weights every task equally; dynamic diagnostics are reported separately.</p>
+    <p>Destination match is tiered by the straight-line distance from the bay centre to the nearest point of the building polygon: ≤20 / 40 / 60 / 80 m gives Q = 1 / 0.75 / 0.5 / 0.25, and beyond 80 m gives 0. Obstacles along the line do not affect this distance; the bay's own occupancy, dimensions and type are still judged independently. There are 116 quality-tier references; five parking tasks have a zero-distance full-match reference, so a well-founded early stop is not penalised. After upgrading, create a new campaign; earlier experiments keep their original builds.</p>
+    <p>For v1.7.3+paper.1, 265 unit tests and the source-audited validation of 45 tasks / 18 scenes / 116 references passed. On a dedicated CARLA instance running the release build, all 18 scene fixtures passed (actor spawn, dimensions, obstacle clearance, separation of all 45 start poses, scripted replay), and every distinct reference of the four retained tasks executed successfully; the other 35 static full-match references were executed live during the 2026-10-17 implementation acceptance. The wheel built from the tagged archive passed standalone installation, read-only resource and exported-client checks. All live runs are controller fixtures on private routes; none represents autonomous task success by a model, and no model campaign has been run.</p>
+    <p><strong>The full source audit passed.</strong> Installed map, SDK, map-authoring inputs and visual evidence bindings were re-verified for this release; historical harness snapshots are provenance records, not evaluator dependencies. Historical performance and image evidence keep their own original build identities.</p>
+    <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/docs/RUNTIME_VALIDATION.md">Runtime validation report (access required) ↗</a>
   </section>
 </main>
 <footer>
-  <span>Livat · Task Benchmark / package 1.7.1 · 同步于 2026-10-12</span>
-  <span>Public project site · <a href="public-cases.json">任务 JSON</a> · <a href="atlas-sha256.txt">图谱 SHA-256</a> · <a href="https://github.com/Starlento/livat-benchmark-site">站点源码 ↗</a></span>
+  <span>Livat · Task Benchmark / package 1.7.3+paper.1 · synced on 2026-10-19</span>
+  <span>Public project site · <a href="public-cases.json">Task JSON</a> · <a href="atlas-sha256.txt">Atlas SHA-256</a> · <a href="https://github.com/Starlento/livat-benchmark-site">Site source ↗</a></span>
 </footer>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Livat Task Benchmark — a task environment and evaluator for CARLA parking harnesses. Installation, a public 45-task catalogue, reliable action receipts, endpoint snapshots and the full interactive atlas.">
+  <meta name="description" content="Livat Task Benchmark — a task environment and evaluator for CARLA parking harnesses. Installation, a public 41-task catalogue, reliable action receipts, endpoint snapshots and the full interactive atlas.">
   <title>Livat · Task Benchmark</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -22,11 +22,11 @@
 <main>
   <section class="hero">
     <div>
-      <p class="eyebrow">CARLA 0.9.16 / LIVAT B3 / PACKAGE v1.7.3+paper.1</p>
+      <p class="eyebrow">CARLA 0.9.16 / LIVAT B3 / PACKAGE v1.8.0</p>
       <h1>Find a bay. Find the exit.<br><span>Starting from what the user says.</span></h1>
       <p class="intro">A task environment and evaluator for parking harnesses. Starting from the user's own words, the system must understand what it sees, plan its actions, remember the scene, and find a suitable bay — or drive to the exit the user wants.</p>
       <div class="buttons">
-        <a class="primary" href="#tasks">Browse 45 tasks <span>↗</span></a>
+        <a class="primary" href="#tasks">Browse 41 tasks <span>↗</span></a>
         <a class="secondary" href="atlas.html">Open full atlas ↗</a>
       </div>
       <p class="hero-note">Parking: bay-selection handover · Exit: completes automatically on arrival · Python ≥ 3.10 · Standalone HTTP interface</p>
@@ -41,35 +41,35 @@
   </section>
 
   <div class="metrics">
-    <div><b>45</b><span>Curated tasks</span></div>
-    <div><b>4</b><span>Diagnostic tags</span></div>
+    <div><b>41</b><span>Tasks</span></div>
+    <div><b>6</b><span>Task categories</span></div>
     <div><b>6</b><span>RGB cameras</span></div>
     <div><b>60 × 40 m</b><span>Current perception window</span></div>
   </div>
 
   <section id="release">
     <div class="section-head">
-      <div><p class="eyebrow">PAPER RELEASE / v1.7.3+paper.1</p><h2>45 curated tasks, one complete run each.</h2></div>
-      <p>Cut from v1.7.3 for the paper: seven task features and four diagnostic tags.<br>39 statically scored tasks and 6 dynamic diagnostics across 18 scenes.</p>
+      <div><p class="eyebrow">RELEASE / v1.8.0</p><h2>41 tasks in six categories, one complete run each.</h2></div>
+      <p>23 parking handoff tasks and 18 exit tasks. Each category carries equal weight in the aggregate score.<br>Junction turns are fixed-radius curves; reference routes drive forward only.</p>
     </div>
     <div class="release-grid">
-      <article><span class="feature-label">Curated task set</span><h3>Each task is designed, not templated.</h3><p>Any mall lift lobby 12, any exit 12, named lobby or office 5, shop destination 4, special bay 6, zone request 3 and named exit 3. Every task is one complete episode; a few paired tasks deliberately share a start pose and scene so that only the user goal differs. Four previously published tasks keep their original case_id, user prompt and start pose; their answers and references follow the current rules.</p></article>
-      <article><span class="feature-label">Diagnostic tags</span><h3>What each task is designed to probe.</h3><p>Sparse-cue search (13 tasks), sign grounding (13), search trade-off (23) and change adaptation (6). A task carries at most one primary and one secondary tag, and six baseline scenarios carry none. Tags are evaluator-side analysis labels and are never given to the system under test.</p></article>
-      <article><span class="feature-label">Static and dynamic scenes</span><h3>Scripted vehicles can change the scene.</h3><p>Static scenes may add parked vehicles to originally free bays. Six dynamic tasks add a scripted vehicle that parks, departs or blocks a lane, triggered by simulation time or ego position. They report completion, quality, waiting, path and event data; motion efficiency and total score are null and stay out of the static ranking.</p></article>
+      <article><span class="feature-label">Six task categories</span><h3>From a named building to any exit.</h3><p>Named building 9 (mall lift lobbies 1–4 and office towers A–E, one task each), any mall lift lobby 3, special bay 6 (accessible and charging, 3 each), store 5 (IKEA 3, 7FRESH 1, Suning 1), named exit 9 (three per exit, mostly from starts nearer another exit) and any exit 9 from nine dispersed interior starts. Parking tasks start at the Fuquan Rd (7), Jinzhong Rd (9) and Xiehe Rd (7) entrances.</p></article>
+      <article><span class="feature-label">Junction motion</span><h3>No stubs, no forks inside a junction.</h3><p>Each road ends at its junction mouth; inside, the only motion is a complete turn from the approach mouth to a departure mouth, including going straight. Corners are 6 m arcs, tightened to the steering limit when needed, with Dubins arc–line–arc joins where the adjacent roads leave no room. The vehicle is an oriented point: paths are certified for road visibility, not body collision.</p></article>
+      <article><span class="feature-label">Forward-only references</span><h3>Baselines never reverse.</h3><p>Every reference route leaves in the start heading and drives forward only, without reversing or turning around. Reversing and the dead-end turnaround remain legal actions for the system under test and are scored from its executed trajectory against the same joint cost.</p></article>
     </div>
-    <p class="caption">The current version comes from the benchmark's single package declaration. The server, exported client and Schema must all come from the same release. <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/docs/RELEASE_NOTES.md">Release notes ↗</a> · <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/docs/TASK_DESIGN.md">Task design ↗</a> (repository access required)</p>
+    <p class="caption">The current version comes from the benchmark's single package declaration. The server, exported client and Schema must all come from the same release. <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.8.0/docs/RELEASE_NOTES.md">Release notes ↗</a> · <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.8.0/SPEC.md">Specification ↗</a> (repository access required)</p>
   </section>
 
   <section id="tasks">
     <div class="section-head">
       <div><p class="eyebrow">01 / PUBLIC TASK CATALOGUE</p><h2>Each task begins with what the user says.</h2></div>
-      <p>Any mall lift lobby 12 · Any exit 12 · Named lobby or office 5 · Shop destination 4 · Special bay 6 · Zone request 3 · Named exit 3.<br>Type a keyword to find the scenarios you care about.</p>
+      <p>Named building 9 · Any mall lift lobby 3 · Special bay 6 · Store 5 · Named exit 9 · Any exit 9.<br>Type a keyword to find the scenarios you care about.</p>
     </div>
     <label class="search-label" for="search">Search user prompts (original Chinese) or task IDs</label>
     <div class="search-row"><input type="search" id="search" placeholder="Try 出口 (exit), 充电 (charging), 宜家 (IKEA)" autocomplete="off"><span id="count" role="status" aria-live="polite">Loading tasks…</span></div>
     <div id="case-list" class="cases" aria-label="Public task catalogue: task ID and user prompt (original Chinese)"></div>
     <noscript><p>Enable JavaScript to view the task catalogue, or download the <a href="public-cases.json">public task JSON</a>.</p></noscript>
-    <p class="caption">Each card shows a task ID and its user prompt in the original Chinese, exactly as given to the model. The public catalogue is constructed explicitly by the benchmark's boundary.py and contains only case_id and user_input. With the owner's authorisation, the <a href="atlas.html">full interactive atlas ↗</a> publishes the map, scoring answers and 116 offline reference routes for human review; harnesses must not use it as prior knowledge of the map, answers or routes.</p>
+    <p class="caption">Each card shows a task ID and its user prompt in the original Chinese, exactly as given to the model. The public catalogue is constructed explicitly by the benchmark's boundary.py and contains only case_id and user_input. With the owner's authorisation, the <a href="atlas.html">full interactive atlas ↗</a> publishes the map, scoring answers and 92 offline reference routes for human review; harnesses must not use it as prior knowledge of the map, answers or routes.</p>
   </section>
 
   <section id="install">
@@ -80,12 +80,12 @@
     <div class="install-grid">
       <div class="install-steps">
         <article><span>01</span><div><h3>Prepare the simulation environment</h3><p>Install <a href="https://github.com/carla-simulator/carla/releases/tag/0.9.16">CARLA 0.9.16 ↗</a>, then deploy the Livat B3 v1.3.0 map and the matching CARLA Python API. Download and installation instructions for the map package are to be provided.</p></div></article>
-        <article><span>02</span><div><h3>Install the benchmark</h3><p>Download the wheel from the <a href="https://github.com/Starlento/livat-task-benchmark/releases/tag/v1.7.3%2Bpaper.1">v1.7.3+paper.1 Release ↗</a>. The release is hosted in a private repository and requires the corresponding access. Installing this package does not install or replace the CARLA SDK.</p></div></article>
+        <article><span>02</span><div><h3>Install the benchmark</h3><p>Download the wheel from the <a href="https://github.com/Starlento/livat-task-benchmark/releases/tag/v1.8.0">v1.8.0 Release ↗</a>. The release is hosted in a private repository and requires the corresponding access. Installing this package does not install or replace the CARLA SDK.</p></div></article>
         <article><span>03</span><div><h3>Start the task service</h3><p>Launch a dedicated CARLA instance following the map delivery instructions, then start the evaluator. Each task has exclusive use of a synchronous clock and gets its own HTTP address and token. Cameras use the map's default exposure.</p></div></article>
       </div>
       <div class="code-card">
         <div class="code-title"><span>TERMINAL / PYTHON ≥ 3.10</span><button id="copy" type="button">Copy</button></div>
-        <pre><code id="install-code">python -m pip install ./livat_task_benchmark-1.7.3+paper.1-py3-none-any.whl
+        <pre><code id="install-code">python -m pip install ./livat_task_benchmark-1.8.0-py3-none-any.whl
 
 livat-bench list-cases
 livat-bench validate
@@ -136,7 +136,7 @@ livat-bench serve \
       <article><h3>Six cameras, captured on demand</h3><p>The Model 3 carries one camera at the centre of the windscreen at 2560 × 1440, FOV 90°; two on the B-pillars, two on the front fenders and one at the rear, each at 1920 × 1080, FOV 140°. 1 Hz is the sensor sampling clock, not a video stream during motion.</p></article>
       <article><h3>Two kinds of endpoint; confirm after saving the result</h3><p>Parking tasks submit the four-corner geometry of a bay perceived in the current frame, and only one final submission is allowed. Actual occupancy, true dimensions, goal match, unique geometric correspondence, observation freshness, the motion contract and the budget all still count towards the score. Exit tasks end on reaching the zone, with no bay selection or full stop required; read <code>result()</code> to save the final score. Receipts, results and past images are retained for at most 120 s; call <code>acknowledge()</code> after saving.</p></article>
     </div>
-    <p class="caption">For all fields and constraints, see the <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/client/PROTOCOL.md">public protocol ↗</a> and the <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/docs/CLIENT_GUIDE.md">client guide ↗</a> (repository access required). The business action counter action_seq is separate from the actual simulation frame sim_frame; a completed receipt does not mean the task succeeded.</p>
+    <p class="caption">For all fields and constraints, see the <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.8.0/client/PROTOCOL.md">public protocol ↗</a> and the <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.8.0/docs/CLIENT_GUIDE.md">client guide ↗</a> (repository access required). The business action counter action_seq is separate from the actual simulation frame sim_frame; a completed receipt does not mean the task succeeded.</p>
   </section>
 
   <section id="observer">
@@ -149,22 +149,22 @@ livat-bench serve \
       <article><h3>Static map without a simulator</h3><p><code>livat-bench observer --api-port 8767</code> serves only the unified <code>GET /scene</code> and needs neither CARLA nor task records. Building polygons keep their parts and holes; charging / accessible / compact markers are independent and may overlap.</p></article>
       <article><h3>Offline replay</h3><p>Use <code>livat-bench replay &lt;run_folder&gt;/public --api-port 8766</code> to read saved records. Replay does not connect to CARLA and does not re-score; incomplete runs remain incomplete.</p></article>
     </div>
-    <p class="caption">A harness project's WebUI may use the map for display to humans; models, policies and execution clients must not call or use it, and it must never flow back into inputs, memory, caches or tool results. The display channel has its own port and credentials. Semantic building boundaries are not physical walls, facilities / fixed occupancy do not determine task eligibility, and map entrances and exits are neither success zones nor proof of drivability. Records, images and tokens stay on the evaluator side. <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/docs/OBSERVER.md">Observer and replay guide ↗</a> (repository access required)</p>
+    <p class="caption">A harness project's WebUI may use the map for display to humans; models, policies and execution clients must not call or use it, and it must never flow back into inputs, memory, caches or tool results. The display channel has its own port and credentials. Semantic building boundaries are not physical walls, facilities / fixed occupancy do not determine task eligibility, and map entrances and exits are neither success zones nor proof of drivability. Records, images and tokens stay on the evaluator side. <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.8.0/docs/OBSERVER.md">Observer and replay guide ↗</a> (repository access required)</p>
   </section>
 
   <section class="evaluation">
     <p class="eyebrow">EVALUATION / SCOPE</p>
     <h2>What is evaluated is the whole system.</h2>
     <p>The system is responsible for visual understanding, planning, memory and choice; the evaluator is responsible for the environment, the motion contract and scoring. This site publishes no model scores. Offline reference replays, controller fixtures that use private routes, and formal model evaluations are recorded separately.</p>
-    <p>A valid static parking task scores 100 × (0.50 Q + 0.50 E) and an exit task 100 × E, where Q is destination match and E is motion efficiency against a reference with joint cost C = 0.60 L/100 + 0.40 T (L: driving distance in metres, T: manoeuvres). The static mean weights every task equally; dynamic diagnostics are reported separately.</p>
-    <p>Destination match is tiered by the straight-line distance from the bay centre to the nearest point of the building polygon: ≤20 / 40 / 60 / 80 m gives Q = 1 / 0.75 / 0.5 / 0.25, and beyond 80 m gives 0. Obstacles along the line do not affect this distance; the bay's own occupancy, dimensions and type are still judged independently. There are 116 quality-tier references; five parking tasks have a zero-distance full-match reference, so a well-founded early stop is not penalised. After upgrading, create a new campaign; earlier experiments keep their original builds.</p>
-    <p>For v1.7.3+paper.1, 265 unit tests and the source-audited validation of 45 tasks / 18 scenes / 116 references passed. On a dedicated CARLA instance running the release build, all 18 scene fixtures passed (actor spawn, dimensions, obstacle clearance, separation of all 45 start poses, scripted replay), and every distinct reference of the four retained tasks executed successfully; the other 35 static full-match references were executed live during the 2026-10-17 implementation acceptance. The wheel built from the tagged archive passed standalone installation, read-only resource and exported-client checks. All live runs are controller fixtures on private routes; none represents autonomous task success by a model, and no model campaign has been run.</p>
-    <p><strong>The full source audit passed.</strong> Installed map, SDK, map-authoring inputs and visual evidence bindings were re-verified for this release; historical harness snapshots are provenance records, not evaluator dependencies. Historical performance and image evidence keep their own original build identities.</p>
-    <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.7.3%2Bpaper.1/docs/RUNTIME_VALIDATION.md">Runtime validation report (access required) ↗</a>
+    <p>A valid static parking task scores 100 × (0.50 Q + 0.50 E) and an exit task 100 × E, where Q is destination match and E is motion efficiency against a reference with joint cost C = 0.60 L/100 + 0.40 T (L: driving distance in metres, T: manoeuvres). The total averages the six category means with equal weight.</p>
+    <p>Destination match is tiered by the straight-line distance from the bay centre to the nearest point of the building polygon: ≤20 / 40 / 60 / 80 m gives Q = 1 / 0.75 / 0.5 / 0.25, and beyond 80 m gives 0. Obstacles along the line do not affect this distance; the bay's own occupancy, dimensions and type are still judged independently. There are 92 references (74 parking quality tiers and 18 exits); two parking tasks have a zero-distance full-match reference, so a well-founded early stop is not penalised. After upgrading, create a new campaign; earlier experiments keep their original builds.</p>
+    <p>For v1.8.0, 270 unit tests and the validation of 41 tasks / 92 references passed. On a dedicated CARLA instance, all 41 full-match references and all 37 distinct partial-quality references executed successfully, all ten dead-end turnarounds were re-driven, and live-smoke passed. Semantic, exit and motion evidence was re-captured and every image was actually reviewed. The wheel built from the tagged archive passed standalone installation, read-only resource and exported-client checks. All live runs are controller fixtures on private routes; none represents autonomous task success by a model, and no model campaign has been run.</p>
+    <p><strong>Source audit limitation.</strong> The full external source audit could not be repeated because the frozen map-authoring source was not available on the release machine; no source binding was relabeled. Mall lift lobby 4 was admitted after fresh signage review; its main public doorway remains unverified in the frozen map, and scoring uses the building polygon, not an entrance.</p>
+    <a href="https://github.com/Starlento/livat-task-benchmark/blob/v1.8.0/docs/RUNTIME_VALIDATION.md">Runtime validation report (access required) ↗</a>
   </section>
 </main>
 <footer>
-  <span>Livat · Task Benchmark / package 1.7.3+paper.1 · synced on 2026-10-19</span>
+  <span>Livat · Task Benchmark / package 1.8.0 · synced on 2026-10-20</span>
   <span>Public project site · <a href="public-cases.json">Task JSON</a> · <a href="atlas-sha256.txt">Atlas SHA-256</a> · <a href="https://github.com/Starlento/livat-benchmark-site">Site source ↗</a></span>
 </footer>
 </body>

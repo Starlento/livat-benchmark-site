@@ -3,40 +3,36 @@
 Live site: https://starlento.github.io/livat-benchmark-site/
 
 Static public introduction, installation instructions, HTTP interface overview and
-searchable 45-task catalogue. GitHub Pages publishes the root of `main`;
+searchable 41-task catalogue. GitHub Pages publishes the root of `main`;
 `.nojekyll` disables Jekyll.
 
 ## Current benchmark snapshot
 
-The site is synchronized with the benchmark's **v1.7.3+paper.1** release on the
-`paper` branch, tag `v1.7.3+paper.1`, on 2026-10-19. The site follows only `paper`
-releases (`<main version>+paper.N`); releases of the internal `main` branch do not
-update it. Displayed versions are a snapshot of the benchmark's sole version
-declaration, `livat_bench/_version.py`. CARLA 0.9.16 and Livat B3 v1.3.0 are external
-dependency requirements. Release and documentation links are pinned to the same tag.
+The site is synchronized with the benchmark's **v1.8.0** release on `main`, tag
+`v1.8.0`, on 2026-10-20, at the owner's request; it previously tracked the
+`v1.7.3+paper.1` paper release. Displayed versions are a snapshot of the benchmark's
+sole version declaration, `livat_bench/_version.py`. CARLA 0.9.16 and Livat B3 v1.3.0
+are external dependency requirements. Release and documentation links are pinned to the
+same tag.
 
-This release replaces the 64 templated tasks with a curated 45-task set: any mall lift
-lobby 12, any exit 12, named lobby or office 5, shop destination 4, special bay 6, zone
-request 3 and named exit 3, across 18 scenes with 116 quality-tier references. 39 tasks
-are scored statically (parking `100 × (0.50 Q + 0.50 E)`, exit `100 E`, equal weight per
-task); 6 dynamic tasks with scripted vehicles report diagnostics with null motion
-efficiency and total score. Four diagnostic tags (sparse-cue search, sign grounding,
-search trade-off, change adaptation) cover 13, 13, 23 and 6 tasks. Four previously
-published tasks keep their `case_id`, prompt and start pose: `case_f5fdcf5ff8f4`,
-`case_403a84cb6620`, `case_15a1e1f42ede` and `case_8288ec6a22d7`.
+The 41 tasks fall into six equally weighted categories: named building 9 (mall lift
+lobbies 1–4 and office towers A–E), any mall lift lobby 3, special bay 6, store 5,
+named exit 9 and any exit 9. Parking scores `100 × (0.50 Q + 0.50 E)`, exit `100 E`.
+Junction turns are complete mouth-to-mouth curves with fixed-radius arcs and Dubins
+joins; the vehicle is an oriented point. All 92 references drive forward only.
 
 Global `GET /scene` remains exclusively for human observer WebUI rendering. Models,
 policies and execution clients must not access or consume global map semantics through
 input, memory, caches or tools. Building semantic boundaries are not walls, facilities
 and occupancy do not establish eligibility, and map connectors are not scored exits.
 
-265 unit tests and the source-audited 45-task / 18-scene / 116-reference validation
-passed. On the release build, all 18 scene fixtures passed live and every distinct
-reference of the four retained tasks executed live; the other 35 static full-match
-references were executed during the 2026-10-17 implementation acceptance. The wheel
-built from the tagged archive passed standalone installation checks. Live runs are
-private-route controller fixtures, not autonomous model results. This site publishes no
-model leaderboard or model scores.
+270 unit tests and the 41-task / 92-reference validation passed. All 41 full-match and
+37 distinct partial-quality references, the ten dead-end turnarounds and live-smoke ran
+on a dedicated CARLA instance; semantic, exit and motion evidence was re-captured and
+reviewed. The full external source audit could not be repeated because the frozen
+map-authoring source was unavailable. The wheel built from the tagged archive passed
+standalone installation checks. Live runs are private-route controller fixtures, not
+autonomous model results. This site publishes no model leaderboard or model scores.
 
 User prompts are shown in the original Chinese exactly as given to the model; the rest
 of the site is in English.
@@ -55,9 +51,9 @@ https://starlento.github.io/livat-benchmark-site/atlas.html
 The owner explicitly authorized publishing the complete local referee atlas,
 including full-map geometry, per-bay scores, answer sets and offline reference routes.
 `atlas.html` is copied byte-for-byte from the tagged benchmark's `task-atlas.html`;
-its checksum is in `atlas-sha256.txt`. The 45 tasks and 1,325 bays bind to dataset
-`25222ef8f29cd263ff76b30a8ba0c017e63e6daa0dd3451b44dc43a591adfebd`.
-This snapshot includes 5,902 continuous navigation curves and no run overlays.
+its checksum is in `atlas-sha256.txt`. The 41 tasks and 1,325 bays bind to dataset
+`c7e18c2431e447174b00064f44e8a7b674ea67601818ac6467b2b4944ec7a178`.
+This snapshot includes 2,695 continuous navigation curves and no run overlays.
 Human review only: harnesses must not use the atlas as prior map, answer or route
 knowledge. Offline references are not autonomous model scores.
 

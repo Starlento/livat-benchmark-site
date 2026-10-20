@@ -3,36 +3,35 @@
 Live site: https://starlento.github.io/livat-benchmark-site/
 
 Static public introduction, installation instructions, HTTP interface overview and
-searchable 41-task catalogue. GitHub Pages publishes the root of `main`;
+searchable 33-task catalogue. GitHub Pages publishes the root of `main`;
 `.nojekyll` disables Jekyll.
 
 ## Current benchmark snapshot
 
-The site is synchronized with the benchmark's **v1.8.0** release on `main`, tag
-`v1.8.0`, on 2026-10-20, at the owner's request; it previously tracked the
+The site is synchronized with the benchmark's **v1.8.1** release on `main`, tag
+`v1.8.1`, on 2026-10-20, at the owner's request; it previously tracked the
 `v1.7.3+paper.1` paper release. Displayed versions are a snapshot of the benchmark's
 sole version declaration, `livat_bench/_version.py`. CARLA 0.9.16 and Livat B3 v1.3.0
 are external dependency requirements. Release and documentation links are pinned to the
 same tag.
 
-The 41 tasks fall into six equally weighted categories: named building 9 (mall lift
-lobbies 1–4 and office towers A–E), any mall lift lobby 3, special bay 6, store 5,
-named exit 9 and any exit 9. Parking scores `100 × (0.50 Q + 0.50 E)`, exit `100 E`.
+The 33 tasks fall into six equally weighted categories: named building 9 (mall lift
+lobbies 1–4 and office towers A–E), any mall lift lobby 3, special bay 6, store 3,
+named exit 9 and any exit 3. Parking scores `100 × (0.50 Q + 0.50 E)`, exit `100 E`.
 Junction turns are complete mouth-to-mouth curves with fixed-radius arcs and Dubins
-joins; the vehicle is an oriented point. All 92 references drive forward only.
+joins; the vehicle is an oriented point. All 78 references drive forward only.
 
 Global `GET /scene` remains exclusively for human observer WebUI rendering. Models,
 policies and execution clients must not access or consume global map semantics through
 input, memory, caches or tools. Building semantic boundaries are not walls, facilities
 and occupancy do not establish eligibility, and map connectors are not scored exits.
 
-270 unit tests and the 41-task / 92-reference validation passed. All 41 full-match and
-37 distinct partial-quality references, the ten dead-end turnarounds and live-smoke ran
-on a dedicated CARLA instance; semantic, exit and motion evidence was re-captured and
-reviewed. The full external source audit could not be repeated because the frozen
-map-authoring source was unavailable. The wheel built from the tagged archive passed
-standalone installation checks. Live runs are private-route controller fixtures, not
-autonomous model results. This site publishes no model leaderboard or model scores.
+273 unit tests and the 33-task / 78-reference offline validation passed. This patch
+has no new CARLA run or RGB review. Prior controller fixtures and image reviews
+retain their original v1.8.0 build identity. The full external source audit still
+stops at the unavailable frozen map-authoring source. The four development tasks
+are three parking tasks and one any-exit task, not autonomous model results.
+This site publishes no model leaderboard or model scores.
 
 User prompts are shown in the original Chinese exactly as given to the model; the rest
 of the site is in English.
@@ -51,9 +50,11 @@ https://starlento.github.io/livat-benchmark-site/atlas.html
 The owner explicitly authorized publishing the complete local referee atlas,
 including full-map geometry, per-bay scores, answer sets and offline reference routes.
 `atlas.html` is copied byte-for-byte from the tagged benchmark's `task-atlas.html`;
-its checksum is in `atlas-sha256.txt`. The 41 tasks and 1,325 bays bind to dataset
-`c7e18c2431e447174b00064f44e8a7b674ea67601818ac6467b2b4944ec7a178`.
+its checksum is in `atlas-sha256.txt`. The 33 tasks and 1,325 bays bind to dataset
+`b4ede6f43760a669588485a2cc41961398c54e070f6763d9ad7316ccd4aa5ee3`.
 This snapshot includes 2,695 continuous navigation curves and no run overlays.
+Map layers are carried from the v1.8.0 atlas after checking unchanged frozen
+source bindings; task and reference views are rebuilt from canonical inputs.
 Human review only: harnesses must not use the atlas as prior map, answer or route
 knowledge. Offline references are not autonomous model scores.
 

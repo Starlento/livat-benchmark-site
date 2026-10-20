@@ -1,9 +1,5 @@
 [
   {
-    "case_id": "case_0569b3c86a56",
-    "user_input": "开出去吧，不挑出口。"
-  },
-  {
     "case_id": "case_095b33c46d8a",
     "user_input": "停在商场1号电梯厅附近吧。"
   },
@@ -28,10 +24,6 @@
     "user_input": "我们走吧，从哪边出去都可以。"
   },
   {
-    "case_id": "case_27ab2bd1037d",
-    "user_input": "找条路出停车场就行。"
-  },
-  {
     "case_id": "case_2e859ae6a78c",
     "user_input": "我要走金钟路出口。"
   },
@@ -42,10 +34,6 @@
   {
     "case_id": "case_403a84cb6620",
     "user_input": "我从3号电梯厅上楼，车停近一点。"
-  },
-  {
-    "case_id": "case_40f075a5c089",
-    "user_input": "不用挑出口，开出停车场就好。"
   },
   {
     "case_id": "case_5252d49b777e",
@@ -92,10 +80,6 @@
     "user_input": "去出口吧，哪一个都行。"
   },
   {
-    "case_id": "case_859fa57b994c",
-    "user_input": "我要出停车场，哪个出口都行。"
-  },
-  {
     "case_id": "case_86d15835f5f6",
     "user_input": "走吧，找金钟路那边的出口。"
   },
@@ -124,10 +108,6 @@
     "user_input": "我要走福泉路出口。"
   },
   {
-    "case_id": "case_b9c26fc2501e",
-    "user_input": "准备回去了，带我去出口。"
-  },
-  {
     "case_id": "case_bc6116f78d42",
     "user_input": "我要上楼逛商场，车停得离电梯近一点。"
   },
@@ -138,18 +118,6 @@
   {
     "case_id": "case_d2b05fb128f1",
     "user_input": "我要去D栋办公楼，车停近一点吧。"
-  },
-  {
-    "case_id": "case_e4949daa409a",
-    "user_input": "我要逛宜家，帮我找个附近的车位。"
-  },
-  {
-    "case_id": "case_ed8394fa1ab8",
-    "user_input": "帮我找个出口吧。"
-  },
-  {
-    "case_id": "case_f143b326a940",
-    "user_input": "今天去宜家，停车别离那儿太远。"
   },
   {
     "case_id": "case_f5fdcf5ff8f4",

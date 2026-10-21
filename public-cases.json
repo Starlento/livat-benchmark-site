@@ -1,134 +1,182 @@
 [
   {
-    "case_id": "case_095b33c46d8a",
+    "case_id": "case_001",
     "user_input": "停在商场1号电梯厅附近吧。"
   },
   {
-    "case_id": "case_15a1e1f42ede",
-    "user_input": "这次停充电车位，我要充电。"
-  },
-  {
-    "case_id": "case_1b2af75bea17",
-    "user_input": "找个靠商场电梯的车位吧，哪个电梯厅都可以。"
-  },
-  {
-    "case_id": "case_1b7af84379ee",
-    "user_input": "走吧，找福泉路那边的出口。"
-  },
-  {
-    "case_id": "case_1cd44c7123bb",
-    "user_input": "今天去E栋办事，停车别离那儿太远。"
-  },
-  {
-    "case_id": "case_23189d7b9e00",
-    "user_input": "我们走吧，从哪边出去都可以。"
-  },
-  {
-    "case_id": "case_2e859ae6a78c",
-    "user_input": "我要走金钟路出口。"
-  },
-  {
-    "case_id": "case_398b8cfb8eab",
-    "user_input": "走吧，找个出口出去。"
-  },
-  {
-    "case_id": "case_403a84cb6620",
-    "user_input": "我从3号电梯厅上楼，车停近一点。"
-  },
-  {
-    "case_id": "case_5252d49b777e",
-    "user_input": "去办公C栋，帮我找个附近的车位。"
-  },
-  {
-    "case_id": "case_5b3a3a152e3f",
-    "user_input": "走吧，找协和路那边的出口。"
-  },
-  {
-    "case_id": "case_60f664ddc100",
-    "user_input": "去办公A栋，帮我找个附近的车位。"
-  },
-  {
-    "case_id": "case_61d0a8be7172",
-    "user_input": "这次需要停无障碍车位。"
-  },
-  {
-    "case_id": "case_6923276ba3b0",
-    "user_input": "帮我找个能充电的车位。"
-  },
-  {
-    "case_id": "case_6b171995c254",
-    "user_input": "带我去协和路出口。"
-  },
-  {
-    "case_id": "case_6fed9391bc9d",
-    "user_input": "今天去B栋办事，停车别离那儿太远。"
-  },
-  {
-    "case_id": "case_7193ab504ff3",
-    "user_input": "找个无障碍车位，乘客要用轮椅下车。"
-  },
-  {
-    "case_id": "case_7b2b467a1dd6",
-    "user_input": "去宜家买点东西，车停近一点。"
-  },
-  {
-    "case_id": "case_81df0053a3dc",
-    "user_input": "我想给车充会儿电，找个充电车位吧。"
-  },
-  {
-    "case_id": "case_8288ec6a22d7",
-    "user_input": "去出口吧，哪一个都行。"
-  },
-  {
-    "case_id": "case_86d15835f5f6",
-    "user_input": "走吧，找金钟路那边的出口。"
-  },
-  {
-    "case_id": "case_94246642b9a2",
-    "user_input": "从福泉路出去吧。"
-  },
-  {
-    "case_id": "case_a354310e6409",
-    "user_input": "停在商场4号电梯厅附近吧。"
-  },
-  {
-    "case_id": "case_a4453d046b46",
-    "user_input": "我妈坐轮椅，帮我找个无障碍车位吧。"
-  },
-  {
-    "case_id": "case_b5ba9473e826",
-    "user_input": "我要去七鲜，车停得方便过去就行。"
-  },
-  {
-    "case_id": "case_b698c9823f2a",
-    "user_input": "从协和路出去吧。"
-  },
-  {
-    "case_id": "case_b6af5dbcff8d",
-    "user_input": "我要走福泉路出口。"
-  },
-  {
-    "case_id": "case_bc6116f78d42",
-    "user_input": "我要上楼逛商场，车停得离电梯近一点。"
-  },
-  {
-    "case_id": "case_c65248d34163",
-    "user_input": "带我去金钟路出口。"
-  },
-  {
-    "case_id": "case_d2b05fb128f1",
-    "user_input": "我要去D栋办公楼，车停近一点吧。"
-  },
-  {
-    "case_id": "case_f5fdcf5ff8f4",
-    "user_input": "去商场逛逛，停在电梯厅附近就行。"
-  },
-  {
-    "case_id": "case_f804d6e309b6",
+    "case_id": "case_002",
     "user_input": "我从2号电梯厅上楼，车停近一点。"
   },
   {
-    "case_id": "case_f85b0e525674",
+    "case_id": "case_003",
+    "user_input": "我从3号电梯厅上楼，车停近一点。"
+  },
+  {
+    "case_id": "case_004",
+    "user_input": "停在商场4号电梯厅附近吧。"
+  },
+  {
+    "case_id": "case_005",
+    "user_input": "去办公A栋，帮我找个附近的车位。"
+  },
+  {
+    "case_id": "case_006",
+    "user_input": "今天去B栋办事，停车别离那儿太远。"
+  },
+  {
+    "case_id": "case_007",
+    "user_input": "去办公C栋，帮我找个附近的车位。"
+  },
+  {
+    "case_id": "case_008",
+    "user_input": "我要去D栋办公楼，车停近一点吧。"
+  },
+  {
+    "case_id": "case_009",
+    "user_input": "今天去E栋办事，停车别离那儿太远。"
+  },
+  {
+    "case_id": "case_010",
+    "user_input": "去商场逛逛，停在电梯厅附近就行。"
+  },
+  {
+    "case_id": "case_011",
+    "user_input": "去商场逛逛，停在电梯厅附近就行。"
+  },
+  {
+    "case_id": "case_012",
+    "user_input": "去商场逛逛，停在电梯厅附近就行。"
+  },
+  {
+    "case_id": "case_013",
+    "user_input": "找个靠商场电梯的车位吧，哪个电梯厅都可以。"
+  },
+  {
+    "case_id": "case_014",
+    "user_input": "找个靠商场电梯的车位吧，哪个电梯厅都可以。"
+  },
+  {
+    "case_id": "case_015",
+    "user_input": "找个靠商场电梯的车位吧，哪个电梯厅都可以。"
+  },
+  {
+    "case_id": "case_016",
+    "user_input": "我要上楼逛商场，车停得离电梯近一点。"
+  },
+  {
+    "case_id": "case_017",
+    "user_input": "我要上楼逛商场，车停得离电梯近一点。"
+  },
+  {
+    "case_id": "case_018",
+    "user_input": "我要上楼逛商场，车停得离电梯近一点。"
+  },
+  {
+    "case_id": "case_019",
+    "user_input": "我妈坐轮椅，帮我找个无障碍车位吧。"
+  },
+  {
+    "case_id": "case_020",
+    "user_input": "这次需要停无障碍车位。"
+  },
+  {
+    "case_id": "case_021",
+    "user_input": "找个无障碍车位，乘客要用轮椅下车。"
+  },
+  {
+    "case_id": "case_022",
+    "user_input": "我想给车充会儿电，找个充电车位吧。"
+  },
+  {
+    "case_id": "case_023",
+    "user_input": "帮我找个能充电的车位。"
+  },
+  {
+    "case_id": "case_024",
+    "user_input": "这次停充电车位，我要充电。"
+  },
+  {
+    "case_id": "case_025",
+    "user_input": "去宜家买点东西，车停近一点。"
+  },
+  {
+    "case_id": "case_026",
+    "user_input": "我要去七鲜，车停得方便过去就行。"
+  },
+  {
+    "case_id": "case_027",
     "user_input": "今天逛苏宁易购，停车别离那儿太远。"
+  },
+  {
+    "case_id": "case_028",
+    "user_input": "从福泉路出去吧。"
+  },
+  {
+    "case_id": "case_029",
+    "user_input": "我要走福泉路出口。"
+  },
+  {
+    "case_id": "case_030",
+    "user_input": "走吧，找福泉路那边的出口。"
+  },
+  {
+    "case_id": "case_031",
+    "user_input": "我要走金钟路出口。"
+  },
+  {
+    "case_id": "case_032",
+    "user_input": "带我去金钟路出口。"
+  },
+  {
+    "case_id": "case_033",
+    "user_input": "走吧，找金钟路那边的出口。"
+  },
+  {
+    "case_id": "case_034",
+    "user_input": "从协和路出去吧。"
+  },
+  {
+    "case_id": "case_035",
+    "user_input": "带我去协和路出口。"
+  },
+  {
+    "case_id": "case_036",
+    "user_input": "走吧，找协和路那边的出口。"
+  },
+  {
+    "case_id": "case_037",
+    "user_input": "走吧，找个出口出去。"
+  },
+  {
+    "case_id": "case_038",
+    "user_input": "走吧，找个出口出去。"
+  },
+  {
+    "case_id": "case_039",
+    "user_input": "走吧，找个出口出去。"
+  },
+  {
+    "case_id": "case_040",
+    "user_input": "我们走吧，从哪边出去都可以。"
+  },
+  {
+    "case_id": "case_041",
+    "user_input": "我们走吧，从哪边出去都可以。"
+  },
+  {
+    "case_id": "case_042",
+    "user_input": "我们走吧，从哪边出去都可以。"
+  },
+  {
+    "case_id": "case_043",
+    "user_input": "去出口吧，哪一个都行。"
+  },
+  {
+    "case_id": "case_044",
+    "user_input": "去出口吧，哪一个都行。"
+  },
+  {
+    "case_id": "case_045",
+    "user_input": "去出口吧，哪一个都行。"
   }
 ]
